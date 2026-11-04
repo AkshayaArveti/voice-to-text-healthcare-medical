@@ -1,0 +1,5 @@
+﻿sample_id,language,verified_transcript,transcript_status,transcript_reviewer,speaker_roles_verified
+arabic,Arabic,,needs_review,,no
+bengali,Bengali,,needs_review,,no
+malayalam,Malayalam,,needs_review,,no
+urdu,Urdu,,needs_review,,no

@@ -1,0 +1,9 @@
+sample_id,language,asr_model,draft_character_count,unicode_letter_counts,this_is_diagnostic_only
+arabic,Arabic,WhisperX large-v3-turbo,1772,ARABIC:1403,script-family check; not an accuracy metric
+arabic,Arabic,SeamlessM4T v2 Large,1725,ARABIC:1360,script-family check; not an accuracy metric
+bengali,Bengali,WhisperX large-v3-turbo,712,BENGALI:341|LATIN:10|DEVANAGARI:4,script-family check; not an accuracy metric
+bengali,Bengali,SeamlessM4T v2 Large,1812,BENGALI:919,script-family check; not an accuracy metric
+malayalam,Malayalam,WhisperX large-v3-turbo,1289,DEVANAGARI:658|LATIN:11,script-family check; not an accuracy metric
+malayalam,Malayalam,SeamlessM4T v2 Large,2333,MALAYALAM:1188|LATIN:9,script-family check; not an accuracy metric
+urdu,Urdu,WhisperX large-v3-turbo,1937,ARABIC:1460|LATIN:14,script-family check; not an accuracy metric
+urdu,Urdu,SeamlessM4T v2 Large,1606,ARABIC:1223,script-family check; not an accuracy metric

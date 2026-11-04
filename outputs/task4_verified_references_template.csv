@@ -1,0 +1,5 @@
+﻿sample_id,language,reference_text,review_status,reviewer,reviewed_date,medical_terms_checked,numbers_checked,speaker_turns_checked,review_notes
+arabic,Arabic,,needs_fluent_review,,,no,no,no,
+bengali,Bengali,,needs_fluent_review,,,no,no,no,
+malayalam,Malayalam,,needs_fluent_review,,,no,no,no,
+urdu,Urdu,,needs_fluent_review,,,no,no,no,
