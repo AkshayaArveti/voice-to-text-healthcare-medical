@@ -19,7 +19,7 @@ Start the backend following `backend/README.md`, then open `http://127.0.0.1:800
 ## Project files
 
 - `outputs/dashboard/index.html` — upload, preview, transcript editing, and download interface.
-- `outputs/TASK_4_Stage_1_ASR_Diarization.ipynb` — Colab audio transcription and diarization workflow.
+- `outputs/TASK_4_Stage_1_ASR_Diarization.ipynb` — Colab T4 workflow for regional transcription, optional speaker diarization, and an added Whisper large-v3 English translation cell. The upload step accepts one language for a quick run or all four for a batch.
 - `outputs/TASK_4_Clinical_Report_Generation_Guarded.ipynb` — guarded bilingual report-generation workflow.
 - `outputs/*_summary.md`, `outputs/*_report.md` — run notes, review findings, and current limitations.
 - `outputs/*template*` and review CSVs — transcript, speaker-role, and reference-verification templates.
