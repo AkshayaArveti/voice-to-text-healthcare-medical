@@ -27,6 +27,23 @@ uvicorn backend.main:app --host 127.0.0.1 --port 8000
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000). The API docs are at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs). The first transcription downloads the model and can take a while. Keep the server terminal open while using the dashboard.
 
+## Optional speaker diarization
+
+Whisper does not identify speakers. To get anonymous speaker IDs and timestamps, install the optional open-source pyannote pipeline:
+
+```bash
+python -m pip install -r backend/requirements-diarization.txt
+```
+
+Accept the access conditions for `pyannote/speaker-diarization-community-1` on Hugging Face, then log in locally with `hf auth login` using a read token. The backend will use the saved Hugging Face login automatically. Or set a token in the same Terminal before starting the server:
+
+```bash
+export HF_TOKEN='hf_your_token_here'
+uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+The token only authorizes model downloads; inference runs locally. Do not paste a real token into project files or commit it. The API matches audio turns to transcript segments and returns anonymous labels such as `SPEAKER_00`. Listen to the audio and manually verify which speaker is the doctor, patient, or nurse; the model cannot assign those roles reliably. If this optional setup fails, transcription still returns.
+
 ## API
 
 `POST /api/transcribe` accepts multipart fields:
@@ -39,7 +56,7 @@ The JSON response includes `transcript`, detected language code, timestamped tex
 ## Scope and limitations
 
 - Language selection guides Whisper; `auto` asks it to detect the language.
-- Whisper returns transcript segments, not validated doctor/patient/nurse identities. `speaker` is `null` and `diarization_status` is `not_configured`; do not infer speaker roles from this output.
+- Whisper returns transcript segments. Optional pyannote diarization can add anonymous speaker IDs, but it does not identify doctor/patient/nurse roles; a person must verify role labels by listening.
 - This endpoint does not generate a clinical report. The existing report workflow requires a transcript and speaker roles verified by a fluent human reviewer; its draft model output is not clinically validated.
 - Transcription quality must be measured against fluent-verified references. This backend does not claim clinical accuracy.
 - The service binds to localhost by default, so it is intended for use on this computer, not as a publicly exposed server.
