@@ -2,7 +2,7 @@
 
 This is the dashboard's local `POST /api/transcribe` service. It uses Whisper `large-v3-turbo` locally, preferring Apple's MLX implementation when Metal is available and falling back to OpenAI Whisper on CPU in headless sessions. It uses no paid API. The model is downloaded the first time it is used; later runs use the local model cache.
 
-For non-English audio, the service also creates an English translation locally with OpenAI Whisper `large-v3`. This is a separate model from the faster transcription model, and the first translated request downloads its weights (several GB) and can take longer. English audio is shown unchanged in both transcript panels. If translation cannot run, the source transcript is still returned. The dashboard lets you edit, copy, and download each transcript separately. Review translations, especially medical terms, against the audio before using them.
+For non-English audio, the service also creates an English translation locally with OpenAI Whisper `small` to reduce download and CPU time. The original-language transcript still uses `large-v3-turbo`. The first translated request downloads the smaller model (about 0.5 GB); later requests reuse it. English audio is shown unchanged in both transcript panels. If translation cannot run, the source transcript is still returned. The dashboard lets you edit, copy, and download each transcript separately. The smaller translation model may be less accurate, especially for medical terms, so review the English against the recording.
 
 ## Requirements
 
