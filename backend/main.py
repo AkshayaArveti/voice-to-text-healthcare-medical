@@ -3,12 +3,17 @@
 from __future__ import annotations
 
 import os
+import json
+import importlib.util
+import threading
 import tempfile
+import zipfile
 from pathlib import Path
 from typing import Any
 
 import mlx_whisper
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from pydantic import BaseModel, Field
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
@@ -17,6 +22,10 @@ from starlette.concurrency import run_in_threadpool
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "outputs" / "dashboard"
 MODEL = os.getenv("WHISPER_MODEL", "mlx-community/whisper-large-v3-turbo")
+REPORT_BASE_MODEL = os.getenv("REPORT_BASE_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
+REPORT_ADAPTER = os.getenv("REPORT_ADAPTER", str(ROOT / "outputs" / "final_adapter.zip"))
+REPORT_MAX_INPUT_TOKENS = int(os.getenv("REPORT_MAX_INPUT_TOKENS", "2048"))
+REPORT_MAX_NEW_TOKENS = int(os.getenv("REPORT_MAX_NEW_TOKENS", "768"))
 DIARIZATION_MODEL = os.getenv("DIARIZATION_MODEL", "pyannote/speaker-diarization-community-1")
 HF_TOKEN = os.getenv("HF_TOKEN", "").strip()
 if not HF_TOKEN:
@@ -42,10 +51,26 @@ app = FastAPI(
     version="1.0.0",
 )
 _diarization_pipeline: Any = None
+_report_model: Any = None
+_report_tokenizer: Any = None
+_report_device: str | None = None
+_report_lock = threading.Lock()
+
+REPORT_LANGUAGES = {"Arabic", "Bengali", "Malayalam", "Urdu"}
+SOAP_FIELDS = ("S", "O", "A", "P")
+
+
+class ReportRequest(BaseModel):
+    language: str
+    verified_transcript: str = Field(min_length=1, max_length=30000)
+    transcript_status: str
+    transcript_reviewer: str = Field(min_length=2, max_length=120)
+    speaker_roles_verified: bool
 
 
 @app.get("/api/health")
 def health() -> dict[str, Any]:
+    report_deps_installed = all(importlib.util.find_spec(package) for package in ("torch", "transformers", "peft"))
     return {
         "status": "ok",
         "engine": "mlx-whisper",
@@ -54,6 +79,12 @@ def health() -> dict[str, Any]:
         "audio_storage": "temporary; deleted after each request",
         "speaker_diarization": "configured" if HF_TOKEN else "needs_optional_huggingface_token",
         "diarization_model": DIARIZATION_MODEL,
+        "report_model": REPORT_BASE_MODEL,
+        "report_generation": (
+            "adapter_not_found" if not Path(REPORT_ADAPTER).exists()
+            else "ready_to_load" if report_deps_installed
+            else "optional_install_required"
+        ),
     }
 
 
@@ -105,6 +136,126 @@ def _attach_speakers(segments: list[dict[str, Any]], turns: list[dict[str, Any]]
                     best_overlap, best_speaker = overlap, turn["speaker"]
         attached.append({**segment, "speaker": best_speaker})
     return attached
+
+
+def _resolve_adapter_path() -> Path:
+    adapter_path = Path(REPORT_ADAPTER).expanduser()
+    if adapter_path.is_dir():
+        return adapter_path
+    if not adapter_path.is_file() or adapter_path.suffix.lower() != ".zip":
+        raise FileNotFoundError(f"Qwen adapter not found: {adapter_path}")
+    destination = Path(tempfile.gettempdir()) / "healthcare-stt-qwen-adapter"
+    configs = list(destination.rglob("adapter_config.json")) if destination.exists() else []
+    if configs and (configs[0].parent / "adapter_model.safetensors").is_file():
+        return configs[0].parent
+    destination.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(adapter_path) as archive:
+        for member in archive.infolist():
+            target = (destination / member.filename).resolve()
+            if destination.resolve() not in target.parents and target != destination.resolve():
+                raise ValueError("Unsafe path found in adapter archive.")
+        archive.extractall(destination)
+    configs = list(destination.rglob("adapter_config.json"))
+    if not configs or not (configs[0].parent / "adapter_model.safetensors").is_file():
+        raise FileNotFoundError("The adapter archive is missing adapter_config.json or adapter_model.safetensors.")
+    return configs[0].parent
+
+
+def _load_report_model() -> tuple[Any, Any, str]:
+    global _report_model, _report_tokenizer, _report_device
+    if _report_model is not None and _report_tokenizer is not None and _report_device:
+        return _report_model, _report_tokenizer, _report_device
+    import torch
+    from peft import PeftModel
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+
+    adapter_path = _resolve_adapter_path()
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    dtype = torch.float16 if device == "mps" else torch.float32
+    tokenizer = AutoTokenizer.from_pretrained(str(adapter_path), use_fast=True)
+    base = AutoModelForCausalLM.from_pretrained(
+        REPORT_BASE_MODEL,
+        torch_dtype=dtype,
+        low_cpu_mem_usage=True,
+    )
+    model = PeftModel.from_pretrained(base, str(adapter_path), is_trainable=False)
+    model.to(device)
+    model.eval()
+    _report_model, _report_tokenizer, _report_device = model, tokenizer, device
+    return model, tokenizer, device
+
+
+def _report_prompt(language: str, transcript: str) -> str:
+    schema = {
+        "english_soap": {field: "string" for field in SOAP_FIELDS},
+        "source_language_soap": {field: f"string in {language}, using its native script" for field in SOAP_FIELDS},
+        "source_evidence": {field: "short exact quote from the source transcript, or empty string" for field in SOAP_FIELDS},
+    }
+    return (
+        "Format a human-verified consultation transcript as a draft SOAP summary. "
+        "Use only facts explicitly present in the transcript. Do not infer diagnoses, medicines, doses, "
+        "or advice. Attribute patient-reported facts to S, measurements and tests to O, clinician-stated "
+        "assessment to A, and clinician-stated actions to P. If a section has no supported facts, write "
+        "'Not stated' (or a faithful equivalent in the source language). If a fact is ambiguous, write "
+        "'Unclear'; never guess. Both reports must contain the same facts. Keep each evidence value an exact "
+        "verbatim source-language quote, or empty when no fact is stated. Output valid JSON only, exactly this schema: "
+        f"{json.dumps(schema, ensure_ascii=False)}\n"
+        f"Verified source language: {language}\nVerified transcript:\n{transcript}"
+    )
+
+
+def _generate_report(language: str, transcript: str) -> dict[str, Any]:
+    import torch
+
+    with _report_lock:
+        model, tokenizer, device = _load_report_model()
+        messages = [{"role": "user", "content": _report_prompt(language, transcript)}]
+        prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        encoded = tokenizer(prompt, return_tensors="pt", truncation=False)
+        input_tokens = int(encoded["input_ids"].shape[-1])
+        if input_tokens > REPORT_MAX_INPUT_TOKENS:
+            raise ValueError(
+                f"Transcript needs {input_tokens} tokens, exceeding the {REPORT_MAX_INPUT_TOKENS}-token limit; it was not truncated."
+            )
+        encoded = {name: value.to(device) for name, value in encoded.items()}
+        with torch.inference_mode():
+            generated = model.generate(
+                **encoded,
+                max_new_tokens=REPORT_MAX_NEW_TOKENS,
+                do_sample=False,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+        raw = tokenizer.decode(generated[0, input_tokens:], skip_special_tokens=True).strip()
+        output_tokens = int(generated.shape[-1] - input_tokens)
+        del encoded, generated
+
+    try:
+        parsed = json.loads(raw)
+        expected_top = {"english_soap", "source_language_soap", "source_evidence"}
+        expected_inner = set(SOAP_FIELDS)
+        schema_valid = (
+            isinstance(parsed, dict)
+            and set(parsed) == expected_top
+            and all(isinstance(parsed[key], dict) and set(parsed[key]) == expected_inner for key in expected_top)
+            and all(isinstance(parsed[key][field], str) for key in expected_top for field in expected_inner)
+        )
+        if not schema_valid:
+            return {"status": "invalid_schema_review_required", "raw_output": raw, "input_tokens": input_tokens, "output_tokens": output_tokens}
+        evidence_mismatches = [
+            field for field, quote in parsed["source_evidence"].items()
+            if quote and quote not in transcript
+        ]
+        return {
+            "status": "draft_review_required",
+            "english_soap": parsed["english_soap"],
+            "source_language_soap": parsed["source_language_soap"],
+            "source_evidence": parsed["source_evidence"],
+            "evidence_mismatches": evidence_mismatches,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+        }
+    except json.JSONDecodeError:
+        return {"status": "invalid_json_review_required", "raw_output": raw, "input_tokens": input_tokens, "output_tokens": output_tokens}
 
 
 @app.post("/api/transcribe")
@@ -185,6 +336,46 @@ async def transcribe(
         if temp_path:
             Path(temp_path).unlink(missing_ok=True)
         await audio.close()
+
+
+@app.post("/api/report")
+async def generate_report(request: ReportRequest) -> dict[str, Any]:
+    if request.language not in REPORT_LANGUAGES:
+        raise HTTPException(status_code=422, detail="Report language must be Arabic, Bengali, Malayalam, or Urdu.")
+    if request.transcript_status.strip().lower() != "verified":
+        raise HTTPException(status_code=422, detail="A fluent human reviewer must verify the transcript before report generation.")
+    if not request.transcript_reviewer.strip():
+        raise HTTPException(status_code=422, detail="Enter the fluent transcript reviewer's name.")
+    if not request.speaker_roles_verified:
+        raise HTTPException(status_code=422, detail="Verify speaker roles by listening before report generation.")
+    transcript = request.verified_transcript.strip()
+    required_roles = ("[DOCTOR]", "[PATIENT]", "[NURSE]")
+    missing_roles = [role for role in required_roles if role not in transcript.upper()]
+    if missing_roles:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Add the verified role labels to the transcript before continuing: {', '.join(missing_roles)}.",
+        )
+    try:
+        draft = await run_in_threadpool(_generate_report, request.language, transcript)
+    except ImportError as exc:
+        raise HTTPException(status_code=503, detail="Report dependencies are not installed. Follow backend/README.md to install the optional report requirements.") from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=503, detail=f"Qwen LoRA adapter unavailable: {exc}") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Report generation failed ({type(exc).__name__}). No report was returned.") from exc
+    return {
+        **draft,
+        "model": REPORT_BASE_MODEL,
+        "adapter": Path(REPORT_ADAPTER).name,
+        "language": request.language,
+        "transcript_reviewer": request.transcript_reviewer.strip(),
+        "verified_transcript": transcript,
+        "clinical_use": "draft_only_human_review_required",
+        "review_notice": "Check every fact, attribution, number, medicine, translation, and evidence quote against the audio and verified transcript.",
+    }
 
 
 if DASHBOARD.is_dir():
