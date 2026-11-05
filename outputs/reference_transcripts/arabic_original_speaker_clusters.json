@@ -1,0 +1,301 @@
+{
+  "audio_file": "arabic.mp3",
+  "embedding_model": "speechbrain/spkrec-ecapa-voxceleb",
+  "method": "ECAPA speaker embeddings over 47 Whisper timestamped segments; agglomerative clustering with 3 clusters.",
+  "status": "experimental_anonymous_speaker_clustering",
+  "candidate_role_mapping": {
+    "SPEAKER_00": "likely doctor",
+    "SPEAKER_01": "likely patient",
+    "SPEAKER_02": "likely nurse"
+  },
+  "candidate_role_mapping_basis": "Tentative mapping by majority alignment with the supplied scripted turn order; roles have not been confirmed by listening.",
+  "caveats": [
+    "The embedding checkpoint was trained on English VoxCeleb data, not specifically Arabic.",
+    "The family-history/smoking transition includes a likely merged or mis-transcribed Whisper segment; inspect segments around 64–70 seconds.",
+    "This is an experimental backup and is not the pyannote backend pipeline."
+  ],
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.5,
+      "text": "صباح الخير، تفضل بالجلوس، السيد راميش كولكارني؟",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 4.5,
+      "end": 6.5200000000000005,
+      "text": "نعم دكتور، صباح الخير",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 6.5200000000000005,
+      "end": 10.0,
+      "text": "صباح الخير، ما الذي أتى بك إلى هنا اليوم؟",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 10.6,
+      "end": 13.620000000000001,
+      "text": "أعاني من حمى تأتي وتختفي منذ أسبوعين",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 13.620000000000001,
+      "end": 19.38,
+      "text": "أشعر بالتعب طوال الوقت، وقد فقدت حوالي خمسة كيلو جرامات من وزني",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 19.38,
+      "end": 24.04,
+      "text": "فهمت، هل تشعر بأي ألم في الصدر أو دوخة؟",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 24.04,
+      "end": 26.88,
+      "text": "أشعر بضغط في صدري أثناء صعود الدرج",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 26.88,
+      "end": 30.48,
+      "text": "وأحياناً أشعر بالدوخة عندما أقف بسرعة",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 30.48,
+      "end": 31.619999999999997,
+      "text": "عذراً دكتور",
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 31.619999999999997,
+      "end": 34.72,
+      "text": "جهاز تخطيط القلب متاح الآن",
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 34.72,
+      "end": 35.96,
+      "text": "شكراً لك",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 35.96,
+      "end": 38.78,
+      "text": "أرسل المريض التالي بعد عشر دقائق",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 38.78,
+      "end": 40.379999999999995,
+      "text": "سيد كولكارني",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 40.379999999999995,
+      "end": 44.22,
+      "text": "هل تعاني من مرض السكري أو ارتفاع ضغط الدم؟",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 44.22,
+      "end": 46.56,
+      "text": "أخبرني الطبيب قبل ثلاث سنوات",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 46.56,
+      "end": 50.620000000000005,
+      "text": "أن لدي مؤشرات أولية للإصابة بمرض السكري",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 50.620000000000005,
+      "end": 53.08,
+      "text": "لكنني لم أتابع الفحوصات",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 53.08,
+      "end": 55.96,
+      "text": "كما أتناول دواء لارتفاع ضغط الدم",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 55.96,
+      "end": 58.24,
+      "text": "لكنني لا أتذكر اسمه",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 58.24,
+      "end": 60.96,
+      "text": "هل يوجد أي تاريخ مرضي في عائلتك؟",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 61.660000000000004,
+      "end": 64.38,
+      "text": "نعم، أصيب والدي بنوبة قلبية",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 64.38,
+      "end": 66.96000000000001,
+      "text": "ووالدتي تعاني المشروبات الكحولية؟",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 67.88,
+      "end": 69.96000000000001,
+      "text": "أقلعت عن التدخين منذ عامين",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 69.96000000000001,
+      "end": 73.6,
+      "text": "أتناول المشروبات الكحولية من حين لآخر",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 73.6,
+      "end": 76.96000000000001,
+      "text": "وأنام حوالي خمس ساعات فقط كل ليلة",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 77.52,
+      "end": 78.96000000000001,
+      "text": "ولا أمارس الرياضة كثيراً",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 79.96000000000001,
+      "end": 82.44,
+      "text": "حسناً، سنجري بعض الفحوصات",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 82.44,
+      "end": 85.38,
+      "text": "بما في ذلك تحليل صورة الدم الكاملة",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 85.38,
+      "end": 92.61999999999999,
+      "text": "وفحص الهيموغلوبين السكري واختبارات وظائف الكلا والكبد وتحليل الدهون وتخطيط القلب",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 92.61999999999999,
+      "end": 101.69999999999999,
+      "text": "بعد مراجعة جميع نتائج الفحوصات تبين أن نسبة الهيموغلوبين السكري لديك تبلغ 8.4%",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 101.69999999999999,
+      "end": 108.32,
+      "text": "مستوى السكر في الدم أثناء الصيام هو 186 ميلي جراماً لكل ديسلتر",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 108.32,
+      "end": 115.08,
+      "text": "وبعد تناول الطعام يصل مستوى السكر إلى 252 ميلي جراماً لكل ديسلتر",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 115.08,
+      "end": 120.48,
+      "text": "أما ضغط الدم لديك فهو 148 على 94",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 120.48,
+      "end": 124.08,
+      "text": "كما أن مستوى الكوليسترول لديك مرتفع أيضاً",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 124.6,
+      "end": 127.16,
+      "text": "هذا ليس خبراً جيداً عن الإطلاق",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 127.16,
+      "end": 133.88,
+      "text": "تشير هذه النتائج إلى إصابتك بمرض السكري من النوع الثاني وارتفاع ضغط الدم",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 133.88,
+      "end": 137.12,
+      "text": "ومن المحتمل أيضاً وجود نقص في فيتامين دال",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 137.12,
+      "end": 143.07999999999998,
+      "text": "سأصف لك أدوية متفورمين وتلمي سارتان وفيتامين دال ثلاثة وأتورفاستاتين",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 143.08,
+      "end": 148.08,
+      "text": "حسناً يا دكتور، سألتزم بتناول الأدوية حسب تعليماتك",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 148.76000000000002,
+      "end": 152.26000000000002,
+      "text": "بالإضافة إلى ذلك، تجنب الأطعمة الدهنية",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 152.26000000000002,
+      "end": 156.08,
+      "text": "امشي لمدة 30 دقيقة على الأقل يومياً",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 156.08,
+      "end": 159.12,
+      "text": "واحرص على النوم من 7 إلى 8 ساعات",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 159.12,
+      "end": 162.34,
+      "text": "وعد بعد أسبوعين لإجراء زيارة المتابعة",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 162.34,
+      "end": 163.86,
+      "text": "شكراً لك يا دكتور",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 163.86,
+      "end": 167.08,
+      "text": "أشعر الآن براحة واطمئنان أكبر بكثير",
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 167.74,
+      "end": 169.3,
+      "text": "على الرحب والسعة",
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 169.3,
+      "end": 172.14000000000001,
+      "text": "اعتني بنفسك وأراك بعد أسبوعين",
+      "speaker_id": "SPEAKER_00"
+    }
+  ]
+}
