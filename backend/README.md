@@ -1,6 +1,6 @@
 # Local transcription backend
 
-This is the dashboard's local `POST /api/transcribe` service. It runs OpenAI Whisper `large-v3-turbo` through Apple's MLX implementation on Apple Silicon. It uses no paid API. The model is downloaded from Hugging Face the first time it is used; later runs use the local model cache.
+This is the dashboard's local `POST /api/transcribe` service. It uses Whisper `large-v3-turbo` locally, preferring Apple's MLX implementation when Metal is available and falling back to OpenAI Whisper on CPU in headless sessions. It uses no paid API. The model is downloaded the first time it is used; later runs use the local model cache.
 
 ## Requirements
 
@@ -21,9 +21,11 @@ brew install python@3.12
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install -r backend/requirements.txt
+python -m pip install -r backend/requirements.txt -r backend/requirements-diarization.txt -r backend/requirements-report.txt
 uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
+
+If launching from a managed/headless session where Metal is unavailable, prefix the server command with `ASR_BACKEND=cpu` to select CPU Whisper. This Codex session uses that setting. Leave the default `auto` in a normal Apple Silicon terminal to use MLX when Metal is available.
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000). The API docs are at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs). The first transcription downloads the model and can take a while. Keep the server terminal open while using the dashboard.
 
@@ -63,7 +65,7 @@ The endpoint returns English and source-language SOAP drafts, exact-quote eviden
 - `audio`: an audio file (up to 100 MB by default)
 - `language`: `auto`, `Arabic`, `Bengali`, `Malayalam`, `Urdu`, or `English`
 
-The JSON response includes `transcript`, detected language code, timestamped text segments, and explicit review/diarization status. Temporary uploaded audio is deleted after the request. Change `MAX_AUDIO_MB` or `WHISPER_MODEL` in the environment before starting if needed.
+The JSON response includes `transcript`, detected language code, timestamped text segments, and explicit review/diarization status. Temporary uploaded audio is deleted after the request. On MLX it uses `WHISPER_MODEL`; on CPU it uses the OpenAI checkpoint named by `OPENAI_WHISPER_MODEL` (default `large-v3-turbo`). Set `ASR_BACKEND=cpu` to force CPU mode, or leave it as `auto` to prefer MLX when Metal is available. CPU transcription is slower. Change the model names or `MAX_AUDIO_MB` in the environment before starting if needed.
 
 `POST /api/report` accepts JSON fields `language`, `verified_transcript`, `transcript_status`, `transcript_reviewer`, and `speaker_roles_verified`. The report route accepts Arabic, Bengali, Malayalam, or Urdu and requires `[DOCTOR]`, `[PATIENT]`, and `[NURSE]` labels in the reviewed transcript.
 

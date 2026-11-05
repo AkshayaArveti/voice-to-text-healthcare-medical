@@ -11,7 +11,6 @@ import zipfile
 from pathlib import Path
 from typing import Any
 
-import mlx_whisper
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 from fastapi.responses import FileResponse
@@ -22,6 +21,8 @@ from starlette.concurrency import run_in_threadpool
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "outputs" / "dashboard"
 MODEL = os.getenv("WHISPER_MODEL", "mlx-community/whisper-large-v3-turbo")
+OPENAI_WHISPER_MODEL = os.getenv("OPENAI_WHISPER_MODEL", "large-v3-turbo")
+ASR_BACKEND = os.getenv("ASR_BACKEND", "auto").strip().lower()
 REPORT_BASE_MODEL = os.getenv("REPORT_BASE_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
 REPORT_ADAPTER = os.getenv("REPORT_ADAPTER", str(ROOT / "outputs" / "final_adapter.zip"))
 REPORT_MAX_INPUT_TOKENS = int(os.getenv("REPORT_MAX_INPUT_TOKENS", "2048"))
@@ -51,6 +52,9 @@ app = FastAPI(
     version="1.0.0",
 )
 _diarization_pipeline: Any = None
+_openai_whisper_model: Any = None
+_asr_engine: str | None = None
+_asr_model_id: str | None = None
 _report_model: Any = None
 _report_tokenizer: Any = None
 _report_device: str | None = None
@@ -73,9 +77,9 @@ def health() -> dict[str, Any]:
     report_deps_installed = all(importlib.util.find_spec(package) for package in ("torch", "transformers", "peft"))
     return {
         "status": "ok",
-        "engine": "mlx-whisper",
-        "model": MODEL,
-        "device": "Apple Silicon (MLX)",
+        "engine": _asr_engine or ("openai-whisper-cpu" if ASR_BACKEND == "cpu" else "MLX with local CPU fallback"),
+        "model": _asr_model_id or (OPENAI_WHISPER_MODEL if ASR_BACKEND == "cpu" else {"mlx": MODEL, "cpu_fallback": OPENAI_WHISPER_MODEL}),
+        "device": "CPU" if ASR_BACKEND == "cpu" else "Apple Metal when available; CPU fallback otherwise",
         "audio_storage": "temporary; deleted after each request",
         "speaker_diarization": "configured" if HF_TOKEN else "needs_optional_huggingface_token",
         "diarization_model": DIARIZATION_MODEL,
@@ -89,16 +93,45 @@ def health() -> dict[str, Any]:
 
 
 def _transcribe(path: str, language_code: str | None) -> dict[str, Any]:
-    options: dict[str, Any] = {
-        "path_or_hf_repo": MODEL,
+    global _openai_whisper_model, _asr_engine, _asr_model_id
+    import torch
+
+    if ASR_BACKEND != "cpu" and torch.backends.mps.is_available():
+        try:
+            import mlx_whisper
+
+            options: dict[str, Any] = {
+                "path_or_hf_repo": MODEL,
+                "task": "transcribe",
+                "word_timestamps": False,
+                "condition_on_previous_text": False,
+                "verbose": False,
+            }
+            if language_code:
+                options["language"] = language_code
+            result = mlx_whisper.transcribe(path, **options)
+            _asr_engine, _asr_model_id = "mlx-whisper", MODEL
+            return result
+        except (ImportError, RuntimeError):
+            # If MLX is unavailable despite MPS support, continue with CPU Whisper.
+            pass
+
+    # Headless sessions without Metal use the same checkpoint through CPU PyTorch.
+    import whisper
+
+    if _openai_whisper_model is None:
+        _openai_whisper_model = whisper.load_model(OPENAI_WHISPER_MODEL, device="cpu")
+    options = {
         "task": "transcribe",
-        "word_timestamps": False,
+        "fp16": False,
         "condition_on_previous_text": False,
         "verbose": False,
     }
     if language_code:
         options["language"] = language_code
-    return mlx_whisper.transcribe(path, **options)
+    result = _openai_whisper_model.transcribe(path, **options)
+    _asr_engine, _asr_model_id = "openai-whisper-cpu", OPENAI_WHISPER_MODEL
+    return result
 
 
 def _diarize(path: str) -> list[dict[str, Any]]:
@@ -312,7 +345,7 @@ async def transcribe(
         return {
             "transcript": text,
             "detected_language": result.get("language", LANGUAGE_CODES.get(language, "unknown")),
-            "model": MODEL,
+            "model": _asr_model_id or MODEL,
             "segments": segments,
             "speaker_turns": speaker_turns,
             "speakers": sorted({turn["speaker"] for turn in speaker_turns}),
