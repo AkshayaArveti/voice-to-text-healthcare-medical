@@ -1,0 +1,523 @@
+{
+  "audio_file": "urdu.mp3",
+  "language": "urdu",
+  "asr_model": "openai/whisper-large-v3",
+  "diarization_model": "pyannote/speaker-diarization-community-1",
+  "status": "unverified_asr_with_anonymous_speaker_ids",
+  "speaker_role_mapping": "unassigned; doctor/patient/nurse must be reviewed manually",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.06,
+      "text": "اسلام علیکم، تشریف رکھئے مسٹر رمیش کلکرنی",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.839,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 4.06,
+      "end": 7.1,
+      "text": "جی ڈاکٹر صاحب، والیکم السلام",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.599,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 7.1,
+      "end": 11.0,
+      "text": "جی، بتائیے آج آپ کو کیا تکلیف ہے؟",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.679,
+      "dominant_overlap_purity": 0.987
+    },
+    {
+      "start": 11.8,
+      "end": 15.34,
+      "text": "مجھے پچھلے دو ہفتوں سے وقفے وقفے سے بخار ہو رہا ہے",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 15.34,
+      "end": 18.28,
+      "text": "مجھے ہر وقت تھکاوت محسوس ہوتی ہے",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.728,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 18.28,
+      "end": 21.52,
+      "text": "اور میرا تقریباً پانچ کلو وزن بھی کم ہو گیا ہے",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.865,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 21.52,
+      "end": 26.82,
+      "text": "اچھا، کیا آپ کو سینے میں درد یا چکر بھی آتے ہیں؟",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.745,
+      "dominant_overlap_purity": 0.985
+    },
+    {
+      "start": 26.82,
+      "end": 30.06,
+      "text": "سیڑھیاں چڑھتے وقت میرے سینے میں دباؤ محسوس ہوتا ہے",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.992,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 30.06,
+      "end": 34.22,
+      "text": "اور جب میں اچانک کھڑا ہوتا ہوں تو کبھی کبھی چکر بھی آتے ہیں",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.819,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 34.22,
+      "end": 35.94,
+      "text": "ماف کیجئے گا ڈاکٹر صاحب",
+      "speaker_id": "SPEAKER_00",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.843,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 35.94,
+      "end": 38.52,
+      "text": "ای سی جی مشین اب دستیاب ہے",
+      "speaker_id": "SPEAKER_00",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.836,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 38.52,
+      "end": 39.72,
+      "text": "شکریہ",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.463,
+      "dominant_overlap_purity": 0.938
+    },
+    {
+      "start": 39.72,
+      "end": 42.96,
+      "text": "دس منٹ بعد اگلے مریض کو بھیج دیجئے گا",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.818,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 42.96,
+      "end": 48.38,
+      "text": "مسٹر کلکرنی کیا آپ کو زیابیتس یا ہائی بلڈ پریشر ہے؟",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.816,
+      "dominant_overlap_purity": 0.992
+    },
+    {
+      "start": 48.38,
+      "end": 50.34,
+      "text": "تین سال پہلے مجھے بتایا گیا تھا",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 50.34,
+      "end": 52.34,
+      "text": "کہ مجھے زیابیتس ہونے کا خدشہ ہے",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 52.34,
+      "end": 55.32,
+      "text": "لیکن میں نے اس کے بعد کوئی فالو اپ نہیں کروایا",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.881,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 55.32,
+      "end": 57.92,
+      "text": "میں ہائی بلڈ پریشر کی دوا بھی لیتا ہوں",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.766,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 57.92,
+      "end": 60.22,
+      "text": "لیکن مجھے اس کا نام یاد نہیں ہے",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.833,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 60.22,
+      "end": 64.4,
+      "text": "کیا آپ کے خاندان میں کسی کو کوئی بیماری رہی ہے؟",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.82,
+      "dominant_overlap_purity": 0.983
+    },
+    {
+      "start": 64.4,
+      "end": 67.26,
+      "text": "جی ہاں میرے والد کو دل کا دورہ پڑا تھا",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.888,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 67.26,
+      "end": 69.04,
+      "text": "اور میری والدہ کو...",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.981,
+      "dominant_overlap_purity": 0.756
+    },
+    {
+      "start": 69.04,
+      "end": 71.22,
+      "text": "یا شراب نوشی کرتے ہیں؟",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.57,
+      "dominant_overlap_purity": 0.816
+    },
+    {
+      "start": 71.22,
+      "end": 73.68,
+      "text": "میں نے دو سال پہلے شراب نوشی چھوڑ دی تھی",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.991,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 73.68,
+      "end": 76.64,
+      "text": "میں کبھی کبھار شراب پیتا ہوں",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.688,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 76.64,
+      "end": 79.42,
+      "text": "ہر رات صرف تقریباً پانچ گھنٹے سوتا ہوں",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.971,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 79.42,
+      "end": 81.36,
+      "text": "اور زیادہ ورزش بھی نہیں کرتا",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.909,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 81.36,
+      "end": 82.52,
+      "text": "ٹھیک ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.44,
+      "dominant_overlap_purity": 0.896
+    },
+    {
+      "start": 82.52,
+      "end": 84.76,
+      "text": "ہم کچھ ٹیسٹ کروائیں گے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.782,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 84.76,
+      "end": 85.22,
+      "text": "جن میں",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 85.22,
+      "end": 86.32,
+      "text": "سی بی سی",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 86.32,
+      "end": 87.82,
+      "text": "ایچ پی اے ون سی",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 87.82,
+      "end": 90.54,
+      "text": "گردوں اور جگر کے افال کے ٹیسٹ",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 90.54,
+      "end": 91.72,
+      "text": "لپٹ پروفائل",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 91.72,
+      "end": 93.62,
+      "text": "اور ای سی جی شامل ہیں",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 93.62,
+      "end": 96.56,
+      "text": "تمام رپورٹس کا جائزہ لینے کے بعد",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.673,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 96.56,
+      "end": 97.52,
+      "text": "معلوم ہوا ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 97.52,
+      "end": 99.62,
+      "text": "کہ آپ کا ایچ پی اے ون سی",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 99.62,
+      "end": 101.98,
+      "text": "آٹھ آشاریا چار فیصد ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 101.98,
+      "end": 104.88,
+      "text": "خالی پیٹ خون میں شگر کی مقدار",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.779,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 104.88,
+      "end": 107.68,
+      "text": "ایک سو چھاسی ملی گرام فی ڈیسی لیٹر ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 107.68,
+      "end": 113.04,
+      "text": "کھانے کے بعد شگر کی مطار 252 ملی گرام فی ڈیسی لیٹر ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.896,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 113.04,
+      "end": 117.26,
+      "text": "اور آپ کا بلڈ پریشر 148 بٹا 94 ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.844,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 117.26,
+      "end": 120.26,
+      "text": "آپ کے کولیسٹرول کی سطح بھی زیادہ ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.782,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 120.26,
+      "end": 122.66,
+      "text": "یہ تو اچھی خبر نہیں ہے",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.591,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 122.66,
+      "end": 128.84,
+      "text": "ان نتائج سے ظاہر ہوتا ہے کہ آپ کو ٹائپ 2 دھیابٹس اور ہائی بلڈ پریشر ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.885,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 128.84,
+      "end": 132.68,
+      "text": "اس کے علاوہ وائٹمین ڈی کی کمی کا بھی امکان ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.851,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 132.68,
+      "end": 140.2,
+      "text": "میں آپ کو میٹ فارمن، ٹیلمیس آرٹن، وائٹمن ڈی تھری اور ایٹرو ویسٹرٹن تجویز کر رہا ہوں",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.895,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 140.2,
+      "end": 145.66,
+      "text": "جی ڈاکٹر صاحب، میں آپ کی ہدایات کے مطابق دوائیں استعمال کروں گا",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.677,
+      "dominant_overlap_purity": 0.997
+    },
+    {
+      "start": 145.66,
+      "end": 148.96,
+      "text": "اس کے علاوہ چکنائی والی غزاؤں سے پرہیز کریں",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.989,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 148.96,
+      "end": 152.24,
+      "text": "روزانہ کم از کم تیس منٹ پیدل چلیں",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.892,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 152.24,
+      "end": 157.52,
+      "text": "سات سے آٹھ گھنٹ پہ سوئیں اور دو ہفتے بعد دوبارہ معاینے کے لیے آئیں",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.971,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 157.52,
+      "end": 159.58,
+      "text": "شکریہ ڈاکٹر صاحب",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.498,
+      "dominant_overlap_purity": 0.979
+    },
+    {
+      "start": 159.58,
+      "end": 162.08,
+      "text": "اب مجھے کافی اتمنان محسوس ہو رہا ہے",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.974,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 162.08,
+      "end": 163.94,
+      "text": "آپ کا خیر مقتم ہے",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.745,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 163.94,
+      "end": 166.06,
+      "text": "اپنا خیال رکھئے گا",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.612,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 166.06,
+      "end": 168.36,
+      "text": "دو ہفتے بعد دوبارہ ملاقات ہوگی",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.998,
+      "dominant_overlap_purity": 1.0
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "audio_file": "bengali.mp3",
+  "language": "bengali",
+  "model": "pyannote/speaker-diarization-community-1",
+  "expected_speaker_count": 3,
+  "status": "anonymous_diarization_requires_human_role_review",
+  "segments": [
+    {
+      "start": 0.031,
+      "end": 0.79,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 1.263,
+      "end": 2.849,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 3.727,
+      "end": 4.03,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 4.03,
+      "end": 5.431,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 7.625,
+      "end": 9.785,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 10.763,
+      "end": 13.666,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 14.408,
+      "end": 16.028,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 16.822,
+      "end": 19.285,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 20.382,
+      "end": 24.196,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 25.107,
+      "end": 28.128,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 28.887,
+      "end": 31.705,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 32.853,
+      "end": 34.152,
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 34.777,
+      "end": 36.987,
+      "speaker_id": "SPEAKER_00"
+    },
+    {
+      "start": 38.287,
+      "end": 41.847,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 42.252,
+      "end": 44.969,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 44.969,
+      "end": 46.066,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 46.977,
+      "end": 51.179,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 52.057,
+      "end": 53.778,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 54.638,
+      "end": 58.537,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 59.633,
+      "end": 63.042,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 64.021,
+      "end": 69.353,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 67.548,
+      "end": 68.881,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 70.147,
+      "end": 72.442,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 73.218,
+      "end": 74.821,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 75.715,
+      "end": 79.478,
+      "speaker_id": "SPEAKER_02"
+    },
+    {
+      "start": 79.478,
+      "end": 79.495,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 80.339,
+      "end": 81.115,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 81.622,
+      "end": 91.443,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 92.827,
+      "end": 98.716,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 99.408,
+      "end": 104.47,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 105.263,
+      "end": 109.6,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 110.377,
+      "end": 113.988,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 114.713,
+      "end": 117.211,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 118.19,
+      "end": 119.894,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 120.89,
+      "end": 126.88,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 127.657,
+      "end": 131.707,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 132.533,
+      "end": 138.119,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 139.064,
+      "end": 140.043,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 140.92,
+      "end": 143.418,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 144.498,
+      "end": 147.08,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 147.957,
+      "end": 155.112,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 155.973,
+      "end": 157.12,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 157.947,
+      "end": 159.955,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 160.782,
+      "end": 161.997,
+      "speaker_id": "SPEAKER_01"
+    },
+    {
+      "start": 162.908,
+      "end": 166.317,
+      "speaker_id": "SPEAKER_01"
+    }
+  ],
+  "speaker_durations_seconds": {
+    "SPEAKER_00": 3.51,
+    "SPEAKER_01": 80.59,
+    "SPEAKER_02": 47.52
+  },
+  "notes": [
+    "Anonymous speaker labels do not identify doctor, patient, or nurse.",
+    "Review speaker identity and roles against the full recording."
+  ]
+}

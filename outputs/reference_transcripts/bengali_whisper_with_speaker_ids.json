@@ -1,0 +1,397 @@
+{
+  "audio_file": "bengali.mp3",
+  "language": "bengali",
+  "asr_model": "openai/whisper-large-v3",
+  "diarization_model": "pyannote/speaker-diarization-community-1",
+  "status": "unverified_asr_with_anonymous_speaker_ids",
+  "speaker_role_mapping": "unassigned; doctor/patient/nurse must be reviewed manually",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 5.34,
+      "text": "সুপ্রভাদ, বোশুন, মিস্টের রমেশ কুলকারনি, জি ডাক্টের, সুপ্রভাদ.",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.496,
+      "dominant_overlap_purity": 0.669
+    },
+    {
+      "start": 7.44,
+      "end": 9.72,
+      "text": "বোলুন, আজ কি সমসানি এশেছেন?",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.919,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 9.72,
+      "end": 13.58,
+      "text": "গতো দুই সপ্তা হো ধরে আমার মাজে মাজে জর হোচ্ছে",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.747,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 13.58,
+      "end": 15.96,
+      "text": "সব সময় খুপ কলান্তো লাগে",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.688,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 15.96,
+      "end": 19.2,
+      "text": "আর আমার প্রাই পাচ কিজি ওজনো কোমে গেছে",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.755,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 19.2,
+      "end": 24.04,
+      "text": "ভুস্তে পারছে, আপনার কি বুকে বেথা হয়ে বা মাথা ঘরে",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.773,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 24.04,
+      "end": 28.0,
+      "text": "শিরি দিয়ে ওঠার সময় বুকে এট্টু চাপ অনুভাব করি",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.77,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 28.0,
+      "end": 31.64,
+      "text": "আর হটাত করে দারালে, মাজে মাজে মাথা গরে",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.791,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 31.64,
+      "end": 36.9,
+      "text": "মাফ করে দাক্তের, ECG মেশিন এখন পা঵া জাত্ছে",
+      "speaker_id": "SPEAKER_00",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.651,
+      "dominant_overlap_purity": 0.981
+    },
+    {
+      "start": 36.9,
+      "end": 41.58,
+      "text": "ধুনোবাদ, দাশ মিনিট পর পরের রোগিকে পাঠাবেন",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.704,
+      "dominant_overlap_purity": 0.974
+    },
+    {
+      "start": 41.58,
+      "end": 45.9,
+      "text": "মিস্টের কুলকারনি, আপনার কি ডাইবেটিস বা উচ্ছো রক্তচাপ আছে?",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.691,
+      "dominant_overlap_purity": 0.762
+    },
+    {
+      "start": 45.9,
+      "end": 51.1,
+      "text": "তিন বছোর আগে আমাকে বলা হোয়ে ছিলো জে আমার ডাইবেটিস হার জুকি রোয়ে ছে",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.825,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 51.1,
+      "end": 53.72,
+      "text": "কিন্তু আমি আর পরিখা করাইনি",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.665,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 53.72,
+      "end": 58.56,
+      "text": "উচ্ছো রক্তো চাপের জন্নো অসুধো খাই তবে অসুধের নামতা মনে নিই",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.818,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 58.56,
+      "end": 62.86,
+      "text": "আপনার পরিবারের কারো কি আগে থেকে কোনু রোগের ইতিহাশ আছে?",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.75,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 63.64,
+      "end": 66.56,
+      "text": "হে, আমার বাবার হর্ট এটাকোয়ে ছিলো",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.87,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 66.56,
+      "end": 69.34,
+      "text": "এবং আমার মায় টাইমিটিস আছে",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 0.676
+    },
+    {
+      "start": 69.34,
+      "end": 72.34,
+      "text": "আমি দুই বছোর আগে ধুম্পান ছেরে দিয়েছি",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.735,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 72.34,
+      "end": 74.72,
+      "text": "মাজে মাজে মদ্ধপান করি",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.674,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 74.72,
+      "end": 79.46,
+      "text": "রাতে মাত্র পাজ ঘন্টার মতো ঘুমাই এবং তেমন বেযামো করিনা",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.811,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 79.46,
+      "end": 80.92,
+      "text": "ঠিকাছে",
+      "speaker_id": null,
+      "speaker_assignment_status": "ambiguous_or_low_coverage",
+      "dominant_overlap_fraction": 0.41,
+      "dominant_overlap_purity": 0.971
+    },
+    {
+      "start": 80.92,
+      "end": 83.1,
+      "text": "আমরা কিছু পরিখা করাবো",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.767,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 83.1,
+      "end": 91.28,
+      "text": "জেমন CBC, HbA1c, Kidney ও Liver এর কার্জকারিতা পরিখা, Lipid Profile এবং একটি ECG",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 91.28,
+      "end": 98.48,
+      "text": "আপনার সব report পরিখা করে দেখা গেছে আপনার HbA1c 8.4 তাংশো",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.808,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 98.48,
+      "end": 104.22,
+      "text": "খালি পেটে রক্তে শরকরার মাত্রা প্রতি দেশিলিতারে একশো ছিযাশি মিলিগ্রাম",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.879,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 104.22,
+      "end": 109.36,
+      "text": "খাবার খার পর এই মাত্রা প্রতি দেশি লিটারে দুইশো বাহান্নো মিলিগ্রাম",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.846,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 109.36,
+      "end": 113.68,
+      "text": "আর আপনার রক্ত চাপ 148 লিশ বাই চুরান অবোই",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.82,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 113.68,
+      "end": 117.06,
+      "text": "আপনার কোলেস্টেরলের মাত্রাও অনেক বেশি",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.786,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 117.06,
+      "end": 119.84,
+      "text": "এটা তো মতেও ভালো খবুর নয়",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.648,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 119.84,
+      "end": 126.66,
+      "text": "এই পরিখার ফলাফল থেকে বজা জাছে জে আপনা টাইপ টু ডাইবেটিস এবং উচ্ছো রক্ত চাপ রোয়েছে",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.854,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 126.66,
+      "end": 131.48,
+      "text": "এছারাও আপনা শরিরে ভিটামিন দিয়ের ঘাটি থাকা সম্ভাবনা রোয়েছে",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.839,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 131.48,
+      "end": 137.96,
+      "text": "আমি আপনাকে মেটাফরমিন, তেলমিশা টান, ভিটামিন দিথ্রি এবং এটর্ভাস্টাটিন অসুদ দিছি",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.873,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 137.96,
+      "end": 140.0,
+      "text": "ঠিক আছে দাক্তের",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.537,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 140.0,
+      "end": 143.32,
+      "text": "আপনা নির্দেশ অনুজাই অশুদ গুলো খাবো",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.736,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 143.32,
+      "end": 146.92,
+      "text": "এছারাও তেল জুক্ত খাবার এরিয়ে চলুন",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.7,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 146.92,
+      "end": 149.94,
+      "text": "প্রতি দিন অন্ততো ত্রিষ মিনিট হাটুন",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.71,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 149.94,
+      "end": 151.88,
+      "text": "7-8 খন্টা ঘুমান",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 151.88,
+      "end": 153.56,
+      "text": "এবং 2 শপ্তা হো পর আবার",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 153.56,
+      "end": 154.86,
+      "text": "ফলোআপের জন্ন আশ্বেন",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 154.86,
+      "end": 157.0,
+      "text": "ধন্নো বাদ দাক্তের",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.598,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 157.0,
+      "end": 159.8,
+      "text": "এখন আমার অনেকতাই শোস্তি লাকছে",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.705,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 159.8,
+      "end": 161.86,
+      "text": "আপনাকে শাগোতম",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.599,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 161.86,
+      "end": 166.16,
+      "text": "মিজের জত্ন নেবেন দুই শপ্তা হো পর আবার দেখা হবে",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.788,
+      "dominant_overlap_purity": 1.0
+    }
+  ]
+}

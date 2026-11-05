@@ -1,0 +1,433 @@
+{
+  "audio_file": "arabic.mp3",
+  "language": "arabic",
+  "asr_model": "large-v3-turbo",
+  "diarization_model": "pyannote/speaker-diarization-community-1",
+  "status": "unverified_asr_with_anonymous_speaker_ids",
+  "speaker_role_mapping": "unassigned; doctor/patient/nurse must be reviewed manually",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.5,
+      "text": "صباح الخير، تفضل بالجلوس، السيد راميش كولكارني؟",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.57,
+      "dominant_overlap_purity": 0.728
+    },
+    {
+      "start": 4.5,
+      "end": 6.52,
+      "text": "نعم دكتور، صباح الخير",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 6.52,
+      "end": 10.0,
+      "text": "صباح الخير، ما الذي أتى بك إلى هنا اليوم؟",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.786,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 10.6,
+      "end": 13.62,
+      "text": "أعاني من حمى تأتي وتختفي منذ أسبوعين",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 13.62,
+      "end": 19.38,
+      "text": "أشعر بالتعب طوال الوقت، وقد فقدت حوالي خمسة كيلو جرامات من وزني",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 19.38,
+      "end": 24.04,
+      "text": "فهمت، هل تشعر بأي ألم في الصدر أو دوخة؟",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.866,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 24.04,
+      "end": 26.88,
+      "text": "أشعر بضغط في صدري أثناء صعود الدرج",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 26.88,
+      "end": 30.48,
+      "text": "وأحياناً أشعر بالدوخة عندما أقف بسرعة",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 30.48,
+      "end": 31.62,
+      "text": "عذراً دكتور",
+      "speaker_id": "SPEAKER_00",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.754,
+      "dominant_overlap_purity": 0.97
+    },
+    {
+      "start": 31.62,
+      "end": 34.72,
+      "text": "جهاز تخطيط القلب متاح الآن",
+      "speaker_id": "SPEAKER_00",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.902,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 34.72,
+      "end": 35.96,
+      "text": "شكراً لك",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.517,
+      "dominant_overlap_purity": 0.918
+    },
+    {
+      "start": 35.96,
+      "end": 38.78,
+      "text": "أرسل المريض التالي بعد عشر دقائق",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.85,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 38.78,
+      "end": 40.38,
+      "text": "سيد كولكارني",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.57,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 40.38,
+      "end": 44.22,
+      "text": "هل تعاني من مرض السكري أو ارتفاع ضغط الدم؟",
+      "speaker_id": null,
+      "speaker_assignment_status": "ambiguous_or_low_coverage",
+      "dominant_overlap_fraction": 0.622,
+      "dominant_overlap_purity": 0.622
+    },
+    {
+      "start": 44.22,
+      "end": 46.56,
+      "text": "أخبرني الطبيب قبل ثلاث سنوات",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 46.56,
+      "end": 50.62,
+      "text": "أن لدي مؤشرات أولية للإصابة بمرض السكري",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 50.62,
+      "end": 53.08,
+      "text": "لكنني لم أتابع الفحوصات",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 53.08,
+      "end": 55.96,
+      "text": "كما أتناول دواء لارتفاع ضغط الدم",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 55.96,
+      "end": 58.24,
+      "text": "لكنني لا أتذكر اسمه",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 58.24,
+      "end": 60.96,
+      "text": "هل يوجد أي تاريخ مرضي في عائلتك؟",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 61.66,
+      "end": 64.38,
+      "text": "نعم، أصيب والدي بنوبة قلبية",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 64.38,
+      "end": 66.96,
+      "text": "ووالدتي تعاني المشروبات الكحولية؟",
+      "speaker_id": null,
+      "speaker_assignment_status": "ambiguous_or_low_coverage",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 0.597
+    },
+    {
+      "start": 67.88,
+      "end": 69.96,
+      "text": "أقلعت عن التدخين منذ عامين",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 69.96,
+      "end": 73.6,
+      "text": "أتناول المشروبات الكحولية من حين لآخر",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.916,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 73.6,
+      "end": 76.96,
+      "text": "وأنام حوالي خمس ساعات فقط كل ليلة",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 77.52,
+      "end": 78.96,
+      "text": "ولا أمارس الرياضة كثيراً",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 79.96,
+      "end": 82.44,
+      "text": "حسناً، سنجري بعض الفحوصات",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.629,
+      "dominant_overlap_purity": 0.68
+    },
+    {
+      "start": 82.44,
+      "end": 85.38,
+      "text": "بما في ذلك تحليل صورة الدم الكاملة",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 85.38,
+      "end": 92.62,
+      "text": "وفحص الهيموغلوبين السكري واختبارات وظائف الكلا والكبد وتحليل الدهون وتخطيط القلب",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 92.62,
+      "end": 101.7,
+      "text": "بعد مراجعة جميع نتائج الفحوصات تبين أن نسبة الهيموغلوبين السكري لديك تبلغ 8.4%",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.948,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 101.7,
+      "end": 108.32,
+      "text": "مستوى السكر في الدم أثناء الصيام هو 186 ميلي جراماً لكل ديسلتر",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.905,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 108.32,
+      "end": 115.08,
+      "text": "وبعد تناول الطعام يصل مستوى السكر إلى 252 ميلي جراماً لكل ديسلتر",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.894,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 115.08,
+      "end": 120.48,
+      "text": "أما ضغط الدم لديك فهو 148 على 94",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.918,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 120.48,
+      "end": 124.08,
+      "text": "كما أن مستوى الكوليسترول لديك مرتفع أيضاً",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.902,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 124.6,
+      "end": 127.16,
+      "text": "هذا ليس خبراً جيداً عن الإطلاق",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.956,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 127.16,
+      "end": 133.88,
+      "text": "تشير هذه النتائج إلى إصابتك بمرض السكري من النوع الثاني وارتفاع ضغط الدم",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.924,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 133.88,
+      "end": 137.12,
+      "text": "ومن المحتمل أيضاً وجود نقص في فيتامين دال",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 137.12,
+      "end": 143.08,
+      "text": "سأصف لك أدوية متفورمين وتلمي سارتان وفيتامين دال ثلاثة وأتورفاستاتين",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.929,
+      "dominant_overlap_purity": 0.991
+    },
+    {
+      "start": 143.08,
+      "end": 148.08,
+      "text": "حسناً يا دكتور، سألتزم بتناول الأدوية حسب تعليماتك",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.831,
+      "dominant_overlap_purity": 0.996
+    },
+    {
+      "start": 148.76,
+      "end": 152.26,
+      "text": "بالإضافة إلى ذلك، تجنب الأطعمة الدهنية",
+      "speaker_id": null,
+      "speaker_assignment_status": "ambiguous_or_low_coverage",
+      "dominant_overlap_fraction": 0.545,
+      "dominant_overlap_purity": 0.608
+    },
+    {
+      "start": 152.26,
+      "end": 156.08,
+      "text": "امشي لمدة 30 دقيقة على الأقل يومياً",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.894,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 156.08,
+      "end": 159.12,
+      "text": "واحرص على النوم من 7 إلى 8 ساعات",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 1.0,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 159.12,
+      "end": 162.34,
+      "text": "وعد بعد أسبوعين لإجراء زيارة المتابعة",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.983,
+      "dominant_overlap_purity": 0.983
+    },
+    {
+      "start": 162.34,
+      "end": 163.86,
+      "text": "شكراً لك يا دكتور",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.578,
+      "dominant_overlap_purity": 0.667
+    },
+    {
+      "start": 163.86,
+      "end": 167.08,
+      "text": "أشعر الآن براحة واطمئنان أكبر بكثير",
+      "speaker_id": "SPEAKER_01",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.974,
+      "dominant_overlap_purity": 1.0
+    },
+    {
+      "start": 167.74,
+      "end": 169.3,
+      "text": "على الرحب والسعة",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.754,
+      "dominant_overlap_purity": 0.977
+    },
+    {
+      "start": 169.3,
+      "end": 172.14,
+      "text": "اعتني بنفسك وأراك بعد أسبوعين",
+      "speaker_id": "SPEAKER_02",
+      "speaker_assignment_status": "overlap_dominant",
+      "dominant_overlap_fraction": 0.863,
+      "dominant_overlap_purity": 0.874
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # Speaker-diarization fallback audit
 
-## Status
+## Initial fallback status
 
-The pyannote Community-1 pipeline cannot run on this computer because no Hugging Face token is saved here. A local attempt with the public `speechbrain/spkrec-ecapa-voxceleb` model was evaluated as a fallback, but it did not produce reliable three-speaker clusters for these recordings. The experimental Bengali, Malayalam, and Urdu cluster files were removed instead of retaining misleading labels.
+The initial pyannote attempt could not run because no Hugging Face token was saved on this computer. A local attempt with the public `speechbrain/spkrec-ecapa-voxceleb` model was evaluated as a fallback, but it did not produce reliable three-speaker clusters for these recordings. The experimental Bengali, Malayalam, and Urdu cluster files were removed instead of retaining misleading labels.
 
 ## Why the fallback was rejected
 
@@ -11,6 +11,15 @@ The pyannote Community-1 pipeline cannot run on this computer because no Hugging
 - Malayalam's saved Whisper timestamps end at about 198.8 seconds, but the local source audio is about 175.2 seconds long. Those timestamps cannot be used to assign speakers reliably.
 - The ECAPA checkpoint was trained on English VoxCeleb recordings, not these regional-language synthetic voices.
 
-## Recommended remaining step
+## Follow-up: pyannote successfully ran
 
-Run the project's documented pyannote Community-1 setup after a user with model access signs in locally with `hf auth login`. Keep the token on that computer and out of project files. Then listen to the output, map anonymous IDs to doctor, patient, and nurse, and record the result in `outputs/task4_speaker_role_review.csv`. If authentication is unavailable, leave role assignments marked unverified rather than using the failed fallback.
+After the user completed Hugging Face login locally, pyannote Community-1 ran against all four recordings using the known speaker count of three. Results are in `outputs/diarization/pyannote/`:
+
+- Arabic: 51 diarization intervals.
+- Bengali: 45 diarization intervals.
+- Malayalam: 63 diarization intervals.
+- Urdu: 57 diarization intervals.
+
+Each JSON reports three anonymous IDs and durations. These outputs do not assign doctor/patient/nurse roles. Speaker-labeled raw Whisper drafts were created for Arabic, Bengali, and Urdu. They were not merged with Malayalam ASR because its saved Whisper timestamps extend past the actual audio duration. All transcripts and role mappings still require human review. The Hugging Face token remains in the local credential store and is not included in project files.
+
+Next, use `outputs/review_audio/speaker_roles/SPEAKER_ROLE_REVIEW.md` to review the IDs against the audio and record roles in `outputs/task4_speaker_role_review.csv`.
