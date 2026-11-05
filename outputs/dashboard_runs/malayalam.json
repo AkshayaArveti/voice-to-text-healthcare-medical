@@ -1,0 +1,405 @@
+{
+  "transcript": "ശുപ്രഭാതം ഇരക്യു മിസ്ട് രമിശ് കുലക്രണി? അതെ ഡാക്ട് സുപ്രഭാതം പരയു ഇന്യംദാണ നിങ്യളുട്ടപ്രശനം? കയിന്യായി കയായിക്യിയായിക്യിടയിപണിവരന്ന്ന്ന്ന്ന്ന്ന് എകതിശം അഞ്ചിലോഗരാം ഭാരവും കൊരണിട്ന്ന്ന്ന്ന് മനസലായ ന मिस्टर कुलकर्नी, निंगल्क प्रमेहमो उयर्न रेक्त सम्मर्धमो phaltुण�ो. मून वर्षम ṉम्ब, एनिके प्रमेहम वरैनुबले सांथिधै उन्वन्वन्डवन्न, डॉक्टर परनिरुदू. പെക്ഷ് പെണ്വാറ്യന് പരിശോധനക്നകൾറുന്നുന്നും നടതീല്ള്ന. മയാരന്ന് രെകതസമരതതതിന് മരന്നും കളികിന്ന്നുണ്ട് മരിന്നും കജികിുന്ട്ന്ട്ന്ണ് മരിന്ന്നാകികിന്ട്ലാ നകട്പത� നമുക്ക്ചിലാ പരിശോതനകല നാറതാം. ്રિક്ક്ક്યുડેયുં ક്રલિંડેયുં પ�રવરથન પ�રિશોધનગ�ળ લ્પ�િટ પ�રિટર્યલ એસીજીં એંપ�રથ્ય� വിയിറ്വാന്വിരന്സാന്ാന്യേ പരിശോധനാപഞ്യാന്യാന്യന്യി reminis�തി സംന്മറുടിന്യാന്യ കൻംരിന്യന്റിന് പർങ്യപലഇന്യച്ന്യ ശേരീ ണ്റ്ണ്യ് ന്ണ്യൽ വരുതത്റാക്ഷണങ്യൽ അയ്ണ്ന്യ് വരിസിക്യംങ്ണക്യുക്യു ചിണ്യും ച്ണ്ണ് ക്ണ്ണിണ്യും ച്�",
+  "detected_language": "ml",
+  "model": "large-v3-turbo",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 3.54,
+      "text": "ശുപ്രഭാതം ഇരക്യു മിസ്ട് രമിശ് കുലക്രണി?",
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 4.14,
+      "end": 5.98,
+      "text": "അതെ ഡാക്ട് സുപ്രഭാതം",
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 5.98,
+      "end": 8.86,
+      "text": "പരയു ഇന്യംദാണ നിങ്യളുട്ടപ്രശനം?",
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 8.86,
+      "end": 38.86,
+      "text": "കയിന്യായി കയായിക്യിയായിക്യിടയിപണിവരന്ന്ന്ന്ന്ന്ന്ന് എകതിശം അഞ്ചിലോഗരാം ഭാരവും കൊരണിട്ന്ന്ന്ന്ന് മനസലായ ന",
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 38.86,
+      "end": 44.86,
+      "text": "मिस्टर कुलकर्नी, निंगल्क प्रमेहमो उयर्न रेक्त सम्मर्धमो phaltुण�ो.",
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 45.26,
+      "end": 49.86,
+      "text": "मून वर्षम ṉम्ब, एनिके प्रमेहम वरैनुबले सांथिधै उन्वन्वन्डवन्न, डॉक्टर परनिरुदू.",
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 49.86,
+      "end": 53.16,
+      "text": "പെക്ഷ് പെണ്വാറ്യന് പരിശോധനക്നകൾറുന്നുന്നും നടതീല്ള്ന.",
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 53.16,
+      "end": 83.16,
+      "text": "മയാരന്ന് രെകതസമരതതതിന് മരന്നും കളികിന്ന്നുണ്ട് മരിന്നും കജികിുന്ട്ന്ട്ന്ണ് മരിന്ന്നാകികിന്ട്ലാ നകട്പത�",
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 83.16,
+      "end": 85.56,
+      "text": "നമുക്ക്ചിലാ പരിശോതനകല നാറതാം.",
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 85.56,
+      "end": 115.56,
+      "text": "്રિક്ક്ક്યുડેયുં ક്રલિંડેયുં પ�રવરથન પ�રિશોધનગ�ળ લ્પ�િટ પ�રિટર્યલ એસીજીં એંપ�રથ્ય�",
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 115.56,
+      "end": 145.56,
+      "text": "വിയിറ്വാന്വിരന്സാന്ാന്യേ പരിശോധനാപഞ്യാന്യാന്യന്യി reminis�തി സംന്മറുടിന്യാന്യ കൻംരിന്യന്റിന് പർങ്യപലഇന്യച്ന്യ",
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 145.56,
+      "end": 175.2,
+      "text": "ശേരീ ണ്റ്ണ്യ് ന്ണ്യൽ വരുതത്റാക്ഷണങ്യൽ അയ്ണ്ന്യ് വരിസിക്യംങ്ണക്യുക്യു ചിണ്യും ച്ണ്ണ് ക്ണ്ണിണ്യും ച്�",
+      "speaker": "SPEAKER_02"
+    }
+  ],
+  "speaker_turns": [
+    {
+      "start": 0.031,
+      "end": 0.908,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 1.465,
+      "end": 1.955,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 2.191,
+      "end": 3.558,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 4.216,
+      "end": 4.958,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 5.212,
+      "end": 6.005,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 6.393,
+      "end": 6.882,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 7.27,
+      "end": 8.907,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 9.363,
+      "end": 12.873,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 13.345,
+      "end": 14.982,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 15.607,
+      "end": 18.593,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 18.948,
+      "end": 19.657,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 20.213,
+      "end": 23.723,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 24.128,
+      "end": 27.875,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 28.178,
+      "end": 31.587,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 31.874,
+      "end": 35.317,
+      "speaker": "SPEAKER_01"
+    },
+    {
+      "start": 35.722,
+      "end": 36.228,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 36.751,
+      "end": 39.518,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 40.16,
+      "end": 41.122,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 41.543,
+      "end": 44.952,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 45.307,
+      "end": 50.015,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 50.538,
+      "end": 53.272,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 53.744,
+      "end": 56.36,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 56.647,
+      "end": 58.756,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 59.093,
+      "end": 63.616,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 63.97,
+      "end": 64.426,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 64.544,
+      "end": 67.075,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 67.075,
+      "end": 67.43,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 67.43,
+      "end": 68.375,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 68.375,
+      "end": 69.978,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 70.957,
+      "end": 73.403,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 73.96,
+      "end": 75.631,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 76.137,
+      "end": 79.9,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 80.339,
+      "end": 82.178,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 82.769,
+      "end": 83.174,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 83.63,
+      "end": 85.57,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 86.127,
+      "end": 87.038,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 87.173,
+      "end": 88.574,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 88.743,
+      "end": 92.0,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 92.202,
+      "end": 93.333,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 93.569,
+      "end": 95.375,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 96.168,
+      "end": 99.34,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 99.745,
+      "end": 103.39,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 103.897,
+      "end": 110.393,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 110.765,
+      "end": 117.076,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 117.464,
+      "end": 121.953,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 122.358,
+      "end": 124.366,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 125.058,
+      "end": 127.133,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 127.724,
+      "end": 133.968,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 134.407,
+      "end": 137.815,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 138.288,
+      "end": 141.325,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 141.528,
+      "end": 142.81,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 143.03,
+      "end": 145.932,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 146.523,
+      "end": 147.383,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 147.637,
+      "end": 150.117,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 150.64,
+      "end": 153.948,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 154.42,
+      "end": 157.728,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 158.116,
+      "end": 160.816,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 161.221,
+      "end": 164.782,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 165.271,
+      "end": 166.115,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 166.537,
+      "end": 168.832,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "start": 169.304,
+      "end": 170.047,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 170.401,
+      "end": 172.493,
+      "speaker": "SPEAKER_02"
+    },
+    {
+      "start": 172.966,
+      "end": 175.025,
+      "speaker": "SPEAKER_02"
+    }
+  ],
+  "speakers": [
+    "SPEAKER_00",
+    "SPEAKER_01",
+    "SPEAKER_02"
+  ],
+  "diarization_status": "available_review_roles",
+  "diarization_error": null,
+  "review_required": true,
+  "notice": "Automatic speech recognition can mishear medical terms, names, numbers, and speaker changes. Review against the audio."
+}
