@@ -72,7 +72,9 @@
     (()=>{
       const $=id=>document.getElementById(id);
       const fileInput=$('audio-file'),drop=$('dropzone'),card=$('file-card'),player=$('audio-player'),textarea=$('transcript'),status=$('status');
-      let selectedFile=null,objectUrl=null,backend=localStorage.getItem('healthcareSttBackend')||'';
+      const savedBackend=localStorage.getItem('healthcareSttBackend');
+      const sameOriginBackend=(location.port==='8000'&&['127.0.0.1','localhost'].includes(location.hostname))?location.origin:'';
+      let selectedFile=null,objectUrl=null,backend=savedBackend||sameOriginBackend;
       $('backend-url').value=backend;
       const setStatus=(message,kind='')=>{status.textContent=message;status.className='statusline'+(kind?' '+kind:'')};
       const refreshActions=()=>{const has=textarea.value.trim().length>0;$('download-text').disabled=!has;$('copy-text').disabled=!has;$('word-count').textContent=(textarea.value.trim()?textarea.value.trim().split(/\\s+/).length:0)+' words'};

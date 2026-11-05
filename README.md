@@ -9,11 +9,11 @@ A multilingual medical speech-to-text research project for Arabic, Bengali, Mala
 - Diarization output is anonymous and speaker roles have not been verified by listeners.
 - The fine-tuned clinical report extractor produced unsupported details in a spot check. Its reports are experimental and must not be used as final clinical outputs.
 - Colab currently reports that free GPU allocation is unavailable, so the Qwen3-4B follow-up comparison has not run.
-- The dashboard is a front-end prototype. It supports audio selection/preview, language selection, editable transcript text, and transcript download. Automatic transcription requires a compatible local backend at `POST /api/transcribe` returning JSON with a `transcript` string.
+- The dashboard is connected to a local FastAPI backend at `POST /api/transcribe`. On Apple Silicon, it uses MLX Whisper large-v3-turbo and makes no paid API calls. See `backend/README.md` for setup. The backend returns ASR transcript text and timestamps; it does not verify speaker roles or generate clinical reports.
 
 ## Open the dashboard
 
-Open `outputs/dashboard/index.html` in a browser. To enable automatic transcription, run a local ASR backend and set its base URL under **Connect a transcription backend**. The selected audio is sent to that configured endpoint only after **Transcribe audio** is clicked.
+Start the backend following `backend/README.md`, then open `http://127.0.0.1:8000`. The selected audio is processed locally only after **Transcribe audio** is clicked.
 
 ## Project files
 
