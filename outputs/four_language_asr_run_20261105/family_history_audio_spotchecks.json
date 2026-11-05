@@ -1,0 +1,26 @@
+[
+  {
+    "language": "bengali",
+    "model": "Indic-Transcribe-core",
+    "audio_crop": "outputs/review_audio/bengali_history_check.mp3",
+    "transcript": "মনে নেই আপনার পরিবারের কারও কি আগে থেকে কোনও রোগের ইতিহাস আছে হ্যাঁ আমার বাবার হার্ট অ্যাটাক হয়েছিল আপনি কি ধূমপান করেন এবং আমার ধূমপান করেন আমি দুই বছর আগে ধূমপান ছেড়ে দিয়েছি মাঝে মাঝে মদ্যপান করি রাত"
+  },
+  {
+    "language": "malayalam",
+    "model": "Indic-Transcribe-core",
+    "audio_crop": "outputs/review_audio/malayalam_history_check.mp3",
+    "transcript": "ഒരു ഓർമ്മയില്ല നിങ്ങളുടെ കുടുംബത്തിൽ ആർക്കെങ്കിലും എന്തെങ്കിലും രോഗങ്ങളുള്ള ചരിത്രമുണ്ടോ അതെ എന്റെ അച്ഛന് ഹൃദയാഘാതമുണ്ടായിട്ടുണ്ട് എന്റെ അമ്മയ്ക്ക് അതോ മദ്യപിക്കാറുണ്ടോ രണ്ടു വർഷം മുമ്പ് ഞാൻ പുകവലി നിർത്തി ഇടയ്ക്കിടെ മദ്യപിക്കാറുണ്ട്"
+  },
+  {
+    "language": "urdu",
+    "model": "Indic-Transcribe-core",
+    "audio_crop": "outputs/review_audio/urdu_history_check.mp3",
+    "transcript": "لیکن مجھے اس کا نام یاد نہیں ہے کیا آپ کے خاندان میں کسی کو کوئی بیماری رہی ہے جی ہاں میرے والد کو دل کا دورہ پڑا تھا اور میری والدہ کو کیا شراب نوشی کرتے ہیں میں نے دو سال پہلے سگریٹ نوشی چھوڑ دی تھی میں کبھی کبھار شراب پیتا ہوں"
+  },
+  {
+    "language": "arabic",
+    "model": "OpenAI Whisper large-v3-turbo",
+    "audio_crop": "outputs/review_audio/arabic_family_history_check.mp3",
+    "transcript": " لا أتذكر اسمه هل يوجد أي تاريخ مرضي في عائلتك؟ نعم، أصيب والدي بنوبة قلبية ووالدتي تعاني من مرضيك أقلعت عن التدخين منذ عامين أتناول المشروبات الكحولية من حين لآخر"
+  }
+]

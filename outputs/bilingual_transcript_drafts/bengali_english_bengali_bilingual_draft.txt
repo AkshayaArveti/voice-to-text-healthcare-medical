@@ -1,0 +1,65 @@
+Bengali / English bilingual transcript — turn-aligned draft
+UNVERIFIED WORKING DRAFT. English is transcribed from the supplied English source script. Bengali text is a reference-aligned translation draft from the project files, not a fluent-reviewed transcript of the audio. Check every line, all medical terms and numbers, and the speaker turns against the recording before calling it accurate.
+
+01 [DOCTOR] EN: Good morning. Please have a seat. Mr. Ramesh Kulkarni?
+   [DOCTOR] Bengali: সুপ্রভাত। বসুন, মিস্টার রমেশ কুলকার্নি।
+
+02 [PATIENT] EN: Yes, Doctor. Good morning.
+   [PATIENT] Bengali: জি ডাক্তার। সুপ্রভাত।
+
+03 [DOCTOR] EN: Good morning. What brings you here today?
+   [DOCTOR] Bengali: বলুন, আজ কী সমস্যা নিয়ে এসেছেন?
+
+04 [PATIENT] EN: I have been having fever on and off for the past two weeks. I feel tired all the time and have lost about five kilograms.
+   [PATIENT] Bengali: গত দুই সপ্তাহ ধরে আমার মাঝে মাঝে জ্বর হচ্ছে। সব সময় খুব ক্লান্ত লাগে, আর আমার প্রায় পাঁচ কেজি ওজনও কমে গেছে।
+
+05 [DOCTOR] EN: I see. Do you have any chest pain or dizziness?
+   [DOCTOR] Bengali: বুঝতে পারছি। আপনার কি বুকে ব্যথা হয় বা মাথা ঘোরে?
+
+06 [PATIENT] EN: I feel some pressure in my chest while climbing stairs, and I sometimes feel dizzy when I stand up quickly.
+   [PATIENT] Bengali: সিঁড়ি দিয়ে ওঠার সময় বুকে একটু চাপ অনুভব করি। আর হঠাৎ করে দাঁড়ালে মাঝে মাঝে মাথা ঘোরে।
+
+07 [NURSE] EN: Excuse me, Doctor. The ECG machine is available now.
+   [NURSE] Bengali: মাফ করবেন ডাক্তার। ইসিজি মেশিন এখন পাওয়া যাচ্ছে।
+
+08 [DOCTOR] EN: Thank you. Please send the next patient in ten minutes. Mr. Kulkarni, do you have diabetes or high blood pressure?
+   [DOCTOR] Bengali: ধন্যবাদ। দশ মিনিট পর পরের রোগীকে পাঠাবেন। মিস্টার কুলকার্নি, আপনার কি ডায়াবেটিস বা উচ্চ রক্তচাপ আছে?
+
+09 [PATIENT] EN: I was told I was borderline diabetic three years ago, but I did not follow up. I also take medicine for high blood pressure, but I do not remember its name.
+   [PATIENT] Bengali: তিন বছর আগে আমাকে বলা হয়েছিল যে আমার ডায়াবেটিস হওয়ার ঝুঁকি রয়েছে। কিন্তু আমি আর পরীক্ষা করাইনি। উচ্চ রক্তচাপের জন্য ওষুধও খাই, তবে ওষুধের নামটা মনে নেই।
+
+10 [DOCTOR] EN: Any family history of illness?
+   [DOCTOR] Bengali: আপনার পরিবারের কারও কি আগে থেকে কোনো রোগের ইতিহাস আছে?
+
+11 [PATIENT] EN: Yes. My father had a heart attack, and my mother has diabetes.
+   [PATIENT] Bengali: হ্যাঁ, আমার বাবার হার্ট অ্যাটাক হয়েছিল এবং আমার মায়ের ডায়াবেটিস আছে।
+
+12 [DOCTOR] EN: Do you smoke or drink alcohol?
+   [DOCTOR] Bengali: আপনি কি ধূমপান করেন বা মদ্যপান করেন?
+
+13 [PATIENT] EN: I quit smoking two years ago. I drink occasionally, sleep only about five hours a night, and do not exercise much.
+   [PATIENT] Bengali: আমি দুই বছর আগে ধূমপান ছেড়ে দিয়েছি। মাঝে মাঝে মদ্যপান করি। রাতে মাত্র পাঁচ ঘণ্টার মতো ঘুমাই এবং তেমন ব্যায়ামও করি না।
+
+14 [DOCTOR] EN: All right. We will do some tests: CBC, HbA1c, kidney and liver function tests, lipid profile, and an ECG.
+   [DOCTOR] Bengali: ঠিক আছে। আমরা কিছু পরীক্ষা করাব। যেমন সিবিসি, এইচবিএওয়ানসি, কিডনি ও লিভারের কার্যকারিতা পরীক্ষা, লিপিড প্রোফাইল এবং একটি ইসিজি।
+
+15 [DOCTOR] EN: Your HbA1c is 8.4%, fasting blood sugar is 186 mg/dL, post-meal sugar is 252 mg/dL, and your blood pressure is 148/94 mmHg. Your cholesterol levels are also high.
+   [DOCTOR] Bengali: আপনার সব রিপোর্ট পরীক্ষা করে দেখা গেছে, আপনার এইচবিএওয়ানসি আট দশমিক চার শতাংশ। খালি পেটে রক্তে শর্করার মাত্রা প্রতি ডেসিলিটারে একশ ছিয়াশি মিলিগ্রাম। খাবার খাওয়ার পর এই মাত্রা প্রতি ডেসিলিটারে দুইশ বাহান্ন মিলিগ্রাম। আর আপনার রক্তচাপ একশ আটচল্লিশ বাই চুরানব্বই। আপনার কোলেস্টেরলের মাত্রাও অনেক বেশি।
+
+16 [PATIENT] EN: That does not sound good.
+   [PATIENT] Bengali: এটা তো মোটেও ভালো খবর নয়।
+
+17 [DOCTOR] EN: These results show Type 2 Diabetes and Hypertension, and likely Vitamin D deficiency. I will prescribe Metformin, Telmisartan, Vitamin D3, and Atorvastatin.
+   [DOCTOR] Bengali: এই পরীক্ষার ফলাফল থেকে বোঝা যাচ্ছে যে আপনার টাইপ টু ডায়াবেটিস এবং উচ্চ রক্তচাপ রয়েছে। এছাড়াও আপনার শরীরে ভিটামিন ডি-এর ঘাটতি থাকার সম্ভাবনা রয়েছে। আমি আপনাকে মেটফরমিন, টেলমিসারটান, ভিটামিন ডি থ্রি এবং অ্যাটোরভাস্টাটিন ওষুধ দিচ্ছি।
+
+18 [PATIENT] EN: I will take them as prescribed.
+   [PATIENT] Bengali: ঠিক আছে ডাক্তার। আপনার নির্দেশ অনুযায়ী ওষুধগুলো খাব।
+
+19 [DOCTOR] EN: Also avoid oily food, walk for at least 30 minutes every day, sleep for 7–8 hours, and come back after two weeks for a follow-up.
+   [DOCTOR] Bengali: এছাড়াও, তেলযুক্ত খাবার এড়িয়ে চলুন। প্রতিদিন অন্তত ত্রিশ মিনিট হাঁটুন, সাত থেকে আট ঘণ্টা ঘুমান এবং দুই সপ্তাহ পর আবার ফলো-আপের জন্য আসবেন।
+
+20 [PATIENT] EN: Thank you, Doctor. I feel much more relieved now.
+   [PATIENT] Bengali: ধন্যবাদ ডাক্তার। এখন আমার অনেকটাই স্বস্তি লাগছে।
+
+21 [DOCTOR] EN: You are welcome. Take care, and I will see you in two weeks.
+   [DOCTOR] Bengali: আপনাকে স্বাগতম। নিজের যত্ন নেবেন। দুই সপ্তাহ পর আবার দেখা হবে।

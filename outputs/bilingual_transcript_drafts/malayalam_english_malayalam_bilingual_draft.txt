@@ -1,0 +1,65 @@
+Malayalam / English bilingual transcript — turn-aligned draft
+UNVERIFIED WORKING DRAFT. English is transcribed from the supplied English source script. Malayalam text is a reference-aligned translation draft from the project files, not a fluent-reviewed transcript of the audio. Check every line, all medical terms and numbers, and the speaker turns against the recording before calling it accurate.
+
+01 [DOCTOR] EN: Good morning. Please have a seat. Mr. Ramesh Kulkarni?
+   [DOCTOR] Malayalam: സുപ്രഭാതം. ഇരിക്കൂ, മിസ്റ്റർ രമേശ് കുൽക്കർണി.
+
+02 [PATIENT] EN: Yes, Doctor. Good morning.
+   [PATIENT] Malayalam: അതെ ഡോക്ടർ. സുപ്രഭാതം.
+
+03 [DOCTOR] EN: Good morning. What brings you here today?
+   [DOCTOR] Malayalam: പറയൂ, ഇന്ന് എന്താണ് നിങ്ങളുടെ പ്രശ്നം?
+
+04 [PATIENT] EN: I have been having fever on and off for the past two weeks. I feel tired all the time and have lost about five kilograms.
+   [PATIENT] Malayalam: കഴിഞ്ഞ രണ്ടാഴ്ചയായി എനിക്ക് ഇടയ്ക്കിടെ പനി വരുന്നുണ്ട്. എപ്പോഴും ക്ഷീണം തോന്നുന്നു. ഏകദേശം അഞ്ച് കിലോഗ്രാം ഭാരവും കുറഞ്ഞിട്ടുണ്ട്.
+
+05 [DOCTOR] EN: I see. Do you have any chest pain or dizziness?
+   [DOCTOR] Malayalam: മനസ്സിലായി. നിങ്ങൾക്ക് നെഞ്ചുവേദനയോ തലകറക്കമോ ഉണ്ടാകാറുണ്ടോ?
+
+06 [PATIENT] EN: I feel some pressure in my chest while climbing stairs, and I sometimes feel dizzy when I stand up quickly.
+   [PATIENT] Malayalam: പടികൾ കയറുമ്പോൾ നെഞ്ചിൽ ഒരു സമ്മർദ്ദം അനുഭവപ്പെടാറുണ്ട്. പെട്ടെന്ന് എഴുന്നേൽക്കുമ്പോൾ ചിലപ്പോൾ തലകറക്കവും അനുഭവപ്പെടുന്നു.
+
+07 [NURSE] EN: Excuse me, Doctor. The ECG machine is available now.
+   [NURSE] Malayalam: ക്ഷമിക്കണം ഡോക്ടർ. ഇസിജി മെഷീൻ ഇപ്പോൾ ലഭ്യമാണ്.
+
+08 [DOCTOR] EN: Thank you. Please send the next patient in ten minutes. Mr. Kulkarni, do you have diabetes or high blood pressure?
+   [DOCTOR] Malayalam: നന്ദി. പത്ത് മിനിറ്റിന് ശേഷം അടുത്ത രോഗിയെ അയച്ചോളൂ. മിസ്റ്റർ കുൽക്കർണി, നിങ്ങൾക്ക് പ്രമേഹമോ ഉയർന്ന രക്തസമ്മർദ്ദമോ ഉണ്ടോ?
+
+09 [PATIENT] EN: I was told I was borderline diabetic three years ago, but I did not follow up. I also take medicine for high blood pressure, but I do not remember its name.
+   [PATIENT] Malayalam: മൂന്ന് വർഷം മുമ്പ് എനിക്ക് പ്രമേഹം വരാനുള്ള സാധ്യതയുണ്ടെന്ന് ഡോക്ടർ പറഞ്ഞിരുന്നു. പക്ഷേ പിന്നീട് ഞാൻ പരിശോധനകളൊന്നും നടത്തിയില്ല. ഉയർന്ന രക്തസമ്മർദ്ദത്തിന് മരുന്നും കഴിക്കുന്നുണ്ട്. എന്നാൽ മരുന്നിന്റെ പേര് ഓർമ്മയില്ല.
+
+10 [DOCTOR] EN: Any family history of illness?
+   [DOCTOR] Malayalam: നിങ്ങളുടെ കുടുംബത്തിൽ ആർക്കെങ്കിലും എന്തെങ്കിലും രോഗങ്ങളുള്ള ചരിത്രമുണ്ടോ?
+
+11 [PATIENT] EN: Yes. My father had a heart attack, and my mother has diabetes.
+   [PATIENT] Malayalam: അതെ, എന്റെ അച്ഛന് ഹൃദയാഘാതം ഉണ്ടായിട്ടുണ്ട്. എന്റെ അമ്മയ്ക്ക് പ്രമേഹവുമുണ്ട്.
+
+12 [DOCTOR] EN: Do you smoke or drink alcohol?
+   [DOCTOR] Malayalam: നിങ്ങൾ പുകവലിക്കാറുണ്ടോ, അതോ മദ്യപിക്കാറുണ്ടോ?
+
+13 [PATIENT] EN: I quit smoking two years ago. I drink occasionally, sleep only about five hours a night, and do not exercise much.
+   [PATIENT] Malayalam: രണ്ട് വർഷം മുമ്പ് ഞാൻ പുകവലി നിർത്തി. ഇടയ്ക്കിടെ മദ്യപിക്കാറുണ്ട്. ഓരോ രാത്രിയും ഏകദേശം അഞ്ച് മണിക്കൂർ മാത്രമാണ് ഉറങ്ങുന്നത്. അധികം വ്യായാമവും ചെയ്യാറില്ല.
+
+14 [DOCTOR] EN: All right. We will do some tests: CBC, HbA1c, kidney and liver function tests, lipid profile, and an ECG.
+   [DOCTOR] Malayalam: ശരി. നമുക്ക് ചില പരിശോധനകൾ നടത്താം. സിബിസി, എച്ച്‌ബിഎവൺസി, വൃക്കയുടെയും കരളിന്റെയും പ്രവർത്തന പരിശോധനകൾ, ലിപിഡ് പ്രൊഫൈൽ, ഇസിജി എന്നിവ നടത്തണം.
+
+15 [DOCTOR] EN: Your HbA1c is 8.4%, fasting blood sugar is 186 mg/dL, post-meal sugar is 252 mg/dL, and your blood pressure is 148/94 mmHg. Your cholesterol levels are also high.
+   [DOCTOR] Malayalam: നിങ്ങളുടെ എല്ലാ പരിശോധനാ ഫലങ്ങളും പരിശോധിച്ചപ്പോൾ, എച്ച്‌ബിഎവൺസി എട്ട് ദശാംശം നാല് ശതമാനമാണ്. വെറും വയറ്റിലെ രക്തത്തിലെ പഞ്ചസാരയുടെ അളവ് ഒരു ഡെസിലിറ്ററിൽ നൂറ്റി എൺപത്തിയാറ് മില്ലിഗ്രാമാണ്. ഭക്ഷണത്തിന് ശേഷമുള്ള പഞ്ചസാരയുടെ അളവ് ഒരു ഡെസിലിറ്ററിൽ ഇരുനൂറ്റി അമ്പത്തിരണ്ട് മില്ലിഗ്രാമാണ്. നിങ്ങളുടെ രക്തസമ്മർദ്ദം നൂറ്റി നാൽപ്പത്തിയെട്ട് ബൈ തൊണ്ണൂറ്റിനാല് ആണ്. കൊളസ്‌ട്രോളിന്റെ അളവും കൂടുതലാണ്.
+
+16 [PATIENT] EN: That does not sound good.
+   [PATIENT] Malayalam: അത് അത്ര നല്ല വാർത്തയല്ലല്ലോ.
+
+17 [DOCTOR] EN: These results show Type 2 Diabetes and Hypertension, and likely Vitamin D deficiency. I will prescribe Metformin, Telmisartan, Vitamin D3, and Atorvastatin.
+   [DOCTOR] Malayalam: ഈ പരിശോധനാ ഫലങ്ങൾ നിങ്ങൾക്ക് ടൈപ്പ് ടു പ്രമേഹവും ഉയർന്ന രക്തസമ്മർദ്ദവും ഉണ്ടെന്ന് സൂചിപ്പിക്കുന്നു. കൂടാതെ, വിറ്റാമിൻ ഡി കുറവുണ്ടാകാനും സാധ്യതയുണ്ട്. ഞാൻ നിങ്ങൾക്ക് മെറ്റ്‌ഫോർമിൻ, ടെൽമിസാർട്ടൻ, വിറ്റാമിൻ ഡി ത്രീ, അറ്റോർവാസ്റ്റാറ്റിൻ എന്നീ മരുന്നുകൾ നിർദ്ദേശിക്കുന്നു.
+
+18 [PATIENT] EN: I will take them as prescribed.
+   [PATIENT] Malayalam: ശരി ഡോക്ടർ. നിങ്ങളുടെ നിർദ്ദേശപ്രകാരം മരുന്നുകൾ കഴിക്കാം.
+
+19 [DOCTOR] EN: Also avoid oily food, walk for at least 30 minutes every day, sleep for 7–8 hours, and come back after two weeks for a follow-up.
+   [DOCTOR] Malayalam: കൂടാതെ, എണ്ണയിൽ വറുത്ത ഭക്ഷണങ്ങൾ ഒഴിവാക്കുക. ദിവസവും കുറഞ്ഞത് മുപ്പത് മിനിറ്റെങ്കിലും നടക്കുക. ഏഴ് മുതൽ എട്ട് മണിക്കൂർ വരെ ഉറങ്ങുക. രണ്ടാഴ്ച കഴിഞ്ഞ് തുടർപരിശോധനയ്ക്കായി വീണ്ടും വരണം.
+
+20 [PATIENT] EN: Thank you, Doctor. I feel much more relieved now.
+   [PATIENT] Malayalam: നന്ദി ഡോക്ടർ. ഇപ്പോൾ എനിക്ക് ഒരുപാട് ആശ്വാസം തോന്നുന്നു.
+
+21 [DOCTOR] EN: You are welcome. Take care, and I will see you in two weeks.
+   [DOCTOR] Malayalam: സ്വാഗതം. സ്വന്തം ആരോഗ്യം ശ്രദ്ധിക്കുക. രണ്ടാഴ്ച കഴിഞ്ഞ് വീണ്ടും കാണാം.

@@ -1,0 +1,5 @@
+﻿language,model,reference_type,reference_words,hypothesis_words,WER_percent,CER_percent,warning
+arabic,OpenAI Whisper large-v3-turbo,source-script-aligned draft; not exact TTS text or human-verified,263,316,48.67,37.72,provisional comparison only; NOT project accuracy
+bengali,Indic-Transcribe-core,source-script-aligned draft; not exact TTS text or human-verified,320,324,10.31,3.33,provisional comparison only; NOT project accuracy
+malayalam,Indic-Transcribe-core,source-script-aligned draft; not exact TTS text or human-verified,249,257,20.48,4.88,provisional comparison only; NOT project accuracy
+urdu,Indic-Transcribe-core,source-script-aligned draft; not exact TTS text or human-verified,451,444,2.88,2.45,provisional comparison only; NOT project accuracy

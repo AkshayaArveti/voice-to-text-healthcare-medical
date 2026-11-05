@@ -1,0 +1,65 @@
+Arabic / English bilingual transcript — source-script-corrected candidate
+CANDIDATE ONLY. English follows the user-provided source script. Regional-language lines follow the project source-aligned draft. The raw audio recognizer failed or was uncertain on family history and medicine names; line content here reflects the source script, not a claim that ASR heard every word. Speaker roles follow the script order; anonymous diarization IDs are separate. Check exact wording against the ElevenLabs input/audio before treating this as a verified transcript.
+
+01 [DOCTOR] EN: Good morning. Please have a seat. Mr. Ramesh Kulkarni?
+   [DOCTOR] Arabic: صباح الخير. تفضل بالجلوس، سيد راميش كولكارني.
+
+02 [PATIENT] EN: Yes, Doctor. Good morning.
+   [PATIENT] Arabic: نعم يا دكتور. صباح الخير.
+
+03 [DOCTOR] EN: Good morning. What brings you here today?
+   [DOCTOR] Arabic: صباح الخير. ما الذي أتى بك اليوم؟
+
+04 [PATIENT] EN: I have been having fever on and off for the past two weeks. I feel tired all the time and have lost about five kilograms.
+   [PATIENT] Arabic: أعاني من حمى متقطعة منذ أسبوعين. أشعر بالتعب طوال الوقت، وقد فقدت نحو خمسة كيلوغرامات من وزني.
+
+05 [DOCTOR] EN: I see. Do you have any chest pain or dizziness?
+   [DOCTOR] Arabic: فهمت. هل تشعر بألم في الصدر أو بدوار؟
+
+06 [PATIENT] EN: I feel some pressure in my chest while climbing stairs, and I sometimes feel dizzy when I stand up quickly.
+   [PATIENT] Arabic: أشعر بضغط في صدري عند صعود الدرج، وأحيانًا أشعر بالدوار عندما أقف بسرعة.
+
+07 [NURSE] EN: Excuse me, Doctor. The ECG machine is available now.
+   [NURSE] Arabic: عذرًا دكتور. جهاز تخطيط القلب متاح الآن.
+
+08 [DOCTOR] EN: Thank you. Please send the next patient in ten minutes. Mr. Kulkarni, do you have diabetes or high blood pressure?
+   [DOCTOR] Arabic: شكرًا. أرسل المريض التالي بعد عشر دقائق. سيد كولكارني، هل لديك مرض السكري أو ارتفاع ضغط الدم؟
+
+09 [PATIENT] EN: I was told I was borderline diabetic three years ago, but I did not follow up. I also take medicine for high blood pressure, but I do not remember its name.
+   [PATIENT] Arabic: قيل لي قبل ثلاث سنوات إنني في مرحلة ما قبل السكري، لكنني لم أتابع الأمر. وأتناول دواءً لارتفاع ضغط الدم، لكنني لا أتذكر اسمه.
+
+10 [DOCTOR] EN: Any family history of illness?
+   [DOCTOR] Arabic: هل يوجد تاريخ مرضي في عائلتك؟
+
+11 [PATIENT] EN: Yes. My father had a heart attack, and my mother has diabetes.
+   [PATIENT] Arabic: نعم. أُصيب والدي بنوبة قلبية، ووالدتي مصابة بالسكري.
+
+12 [DOCTOR] EN: Do you smoke or drink alcohol?
+   [DOCTOR] Arabic: هل تدخن أو تشرب الكحول؟
+
+13 [PATIENT] EN: I quit smoking two years ago. I drink occasionally, sleep only about five hours a night, and do not exercise much.
+   [PATIENT] Arabic: أقلعت عن التدخين قبل عامين. أشرب أحيانًا، وأنام نحو خمس ساعات فقط كل ليلة، ولا أمارس الرياضة كثيرًا.
+
+14 [DOCTOR] EN: All right. We will do some tests: CBC, HbA1c, kidney and liver function tests, lipid profile, and an ECG.
+   [DOCTOR] Arabic: حسنًا. سنجري بعض الفحوصات: تعداد الدم الكامل، وفحص HbA1c، وفحوصات وظائف الكلى والكبد، وتحليل الدهون، وتخطيط القلب.
+
+15 [DOCTOR] EN: Your HbA1c is 8.4%, fasting blood sugar is 186 mg/dL, post-meal sugar is 252 mg/dL, and your blood pressure is 148/94 mmHg. Your cholesterol levels are also high.
+   [DOCTOR] Arabic: بعد ظهور النتائج، بلغت نسبة HbA1c لديك 8.4 بالمئة، وسكر الدم أثناء الصيام 186 ملغ/دل، وبعد الوجبة 252 ملغ/دل. وضغط الدم 148 على 94، كما أن مستوى الكوليسترول مرتفع.
+
+16 [PATIENT] EN: That does not sound good.
+   [PATIENT] Arabic: هذا لا يبدو جيدًا.
+
+17 [DOCTOR] EN: These results show Type 2 Diabetes and Hypertension, and likely Vitamin D deficiency. I will prescribe Metformin, Telmisartan, Vitamin D3, and Atorvastatin.
+   [DOCTOR] Arabic: تشير هذه النتائج إلى إصابتك بداء السكري من النوع الثاني وارتفاع ضغط الدم، مع احتمال وجود نقص في فيتامين د. سأصف لك ميتفورمين، وتلميسارتان، وفيتامين د3، وأتورفاستاتين.
+
+18 [PATIENT] EN: I will take them as prescribed.
+   [PATIENT] Arabic: سأتناول الأدوية حسب الوصفة يا دكتور.
+
+19 [DOCTOR] EN: Also avoid oily food, walk for at least 30 minutes every day, sleep for 7–8 hours, and come back after two weeks for a follow-up.
+   [DOCTOR] Arabic: تجنب الأطعمة الدهنية، وامشِ ثلاثين دقيقة على الأقل كل يوم، ونم من سبع إلى ثماني ساعات، وعد بعد أسبوعين للمتابعة.
+
+20 [PATIENT] EN: Thank you, Doctor. I feel much more relieved now.
+   [PATIENT] Arabic: شكرًا يا دكتور. أشعر الآن بارتياح أكبر.
+
+21 [DOCTOR] EN: You are welcome. Take care, and I will see you in two weeks.
+   [DOCTOR] Arabic: على الرحب والسعة. اعتنِ بنفسك، وأراك بعد أسبوعين.
