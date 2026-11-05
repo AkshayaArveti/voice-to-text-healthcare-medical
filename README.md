@@ -28,6 +28,7 @@ Start the backend following `backend/README.md`, then open `http://127.0.0.1:800
 - `outputs/reference_transcripts/arabic_mms_preview_whisper_result.txt` and `.json` — raw local Whisper output for the TTS preview. It contains recognition errors and cannot evaluate diarization because the preview has one voice.
 - `outputs/reference_transcripts/arabic_original_whisper_result.txt` and `.json` — raw local Whisper output for the original Arabic recording; diarization was unavailable on this computer.
 - `outputs/reference_transcripts/arabic_original_review.md` — preliminary error findings and the remaining human-review requirement for the original Arabic audio.
+- `outputs/reference_transcripts/arabic_original_corrected_draft.txt` and `arabic_original_correction_notes.md` — draft corrected to the supplied English source meaning; not a verified verbatim Arabic transcript or acoustic speaker labeling.
 - `outputs/final_adapter.zip` — recovered Task 3 LoRA adapter files.
 
 ## Data and validation notes
