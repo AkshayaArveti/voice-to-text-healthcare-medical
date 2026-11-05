@@ -29,6 +29,7 @@ Start the backend following `backend/README.md`, then open `http://127.0.0.1:800
 - `outputs/reference_transcripts/arabic_original_whisper_result.txt` and `.json` — raw local Whisper output for the original Arabic recording.
 - `outputs/reference_transcripts/arabic_original_speaker_clusters.txt` and `.json` — experimental anonymous-speaker clustering of Whisper segments, with tentative script-based role suggestions; not validated diarization and not a replacement for pyannote.
 - `outputs/reference_transcripts/arabic_original_speaker_clustering_review.md` — method and limitations of the experimental Arabic speaker clustering.
+- `outputs/review_audio/REGIONAL_AUDIO_REVIEW_QUEUE.md` — machine-detected transcript issues and reviewer priorities for all four languages. Focused review clips are generated locally in `outputs/review_audio/` and are not committed; the original audio is also kept outside the repository.
 - `outputs/reference_transcripts/arabic_original_review.md` — preliminary error findings and the remaining human-review requirement for the original Arabic audio.
 - `outputs/reference_transcripts/arabic_original_corrected_draft.txt` and `arabic_original_correction_notes.md` — draft corrected to the supplied English source meaning; not a verified verbatim Arabic transcript or acoustic speaker labeling.
 - `outputs/final_adapter.zip` — recovered Task 3 LoRA adapter files.
