@@ -5,6 +5,7 @@ A multilingual medical speech-to-text research project for Arabic, Bengali, Mala
 ## Current project state
 
 - Audio metadata and ASR drafts have been collected for the four language samples.
+- Speaker-labeled reference-aligned text drafts are available for Arabic, Bengali, Malayalam, and Urdu under `outputs/reference_transcripts/`. The Arabic draft is reconstructed from the English source script and may differ from the Arabic ElevenLabs input; all four need fluent review against audio.
 - ASR candidates were compared in Colab: WhisperX large-v3-turbo and SeamlessM4T v2 Large. Script-family percentages are diagnostic only; they are not word or medical accuracy scores.
 - Diarization output is anonymous and speaker roles have not been verified by listeners.
 - The fine-tuned clinical report extractor produced unsupported details in a spot check. Its reports are experimental and must not be used as final clinical outputs.
@@ -22,6 +23,7 @@ Start the backend following `backend/README.md`, then open `http://127.0.0.1:800
 - `outputs/TASK_4_Clinical_Report_Generation_Guarded.ipynb` — guarded bilingual report-generation workflow.
 - `outputs/*_summary.md`, `outputs/*_report.md` — run notes, review findings, and current limitations.
 - `outputs/*template*` and review CSVs — transcript, speaker-role, and reference-verification templates.
+- `outputs/reference_transcripts/*_reference_aligned.txt` — speaker-labeled draft transcripts for review and download; these are not human-verified audio transcripts.
 - `outputs/final_adapter.zip` — recovered Task 3 LoRA adapter files.
 
 ## Data and validation notes
