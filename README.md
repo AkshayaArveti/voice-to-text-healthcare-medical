@@ -24,6 +24,7 @@ Start the backend following `backend/README.md`, then open `http://127.0.0.1:800
 - `outputs/*_summary.md`, `outputs/*_report.md` — run notes, review findings, and current limitations.
 - `outputs/*template*` and review CSVs — transcript, speaker-role, and reference-verification templates.
 - `outputs/reference_transcripts/*_reference_aligned.txt` — speaker-labeled draft transcripts for review and download; these are not human-verified audio transcripts.
+- `outputs/reference_transcripts/arabic_mms_tts_preview.mp3` — local single-voice Arabic TTS preview from the reconstructed Arabic draft. It is not three-speaker audio or the original ElevenLabs recording. The `facebook/mms-tts-ara` checkpoint is licensed CC BY-NC 4.0.
 - `outputs/final_adapter.zip` — recovered Task 3 LoRA adapter files.
 
 ## Data and validation notes
