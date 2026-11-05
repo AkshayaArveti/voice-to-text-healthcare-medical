@@ -1,8 +1,8 @@
 # Local transcription backend
 
-This is the dashboard's local `POST /api/transcribe` service. It uses Whisper `large-v3-turbo` locally, preferring Apple's MLX implementation when Metal is available and falling back to OpenAI Whisper on CPU in headless sessions. It uses no paid API. The model is downloaded the first time it is used; later runs use the local model cache.
+This is the dashboard's local `POST /api/transcribe` service. It routes Arabic, English, and automatic language detection to open-source Whisper `large-v3`. For explicitly selected Bengali, Malayalam, or Urdu, it first diarizes the conversation and transcribes each anonymous speaker turn with Bodhan AI / AI4Bharat Indic-Transcribe-core. That model's card specifies single-speaker input, so the backend does not send the complete multi-speaker call to it. If model access or diarization is unavailable, it falls back to Whisper `large-v3` and reports the reason in the response. All inference is local; no paid API is used. Models are downloaded on first use and cached locally.
 
-For non-English audio, the service also creates an English translation locally with OpenAI Whisper `small` to reduce download and CPU time. The original-language transcript still uses `large-v3-turbo`. The first translated request downloads the smaller model (about 0.5 GB); later requests reuse it. English audio is shown unchanged in both transcript panels. If translation cannot run, the source transcript is still returned. The dashboard lets you edit, copy, and download each transcript separately. The smaller translation model may be less accurate, especially for medical terms, so review the English against the recording.
+For non-English audio, the service creates an English translation locally with Whisper `large-v3` as well. This uses more memory and can take longer than the smaller checkpoint; the model is reused where possible. English audio is shown unchanged in both transcript panels. If translation cannot run, the source transcript is still returned. The dashboard lets you edit, copy, and download each transcript separately. Review the English translation against the recording; large-v3 still mistranscribed parts of the Bengali test audio.
 
 ## Requirements
 
@@ -39,14 +39,14 @@ Whisper does not identify speakers. To get anonymous speaker IDs and timestamps,
 python -m pip install -r backend/requirements-diarization.txt
 ```
 
-Accept the access conditions for `pyannote/speaker-diarization-community-1` on Hugging Face, then log in locally with `hf auth login` using a read token. The backend will use the saved Hugging Face login automatically. Or set a token in the same Terminal before starting the server:
+Accept the access conditions for both `pyannote/speaker-diarization-community-1` and `bodhan-ai/indic-transcribe-core` on Hugging Face, then log in locally with `hf auth login` using a read token. The backend will use the saved Hugging Face login automatically. Or set a token in the same Terminal before starting the server:
 
 ```bash
 export HF_TOKEN='hf_your_token_here'
 uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
 
-The token only authorizes model downloads; inference runs locally. Do not paste a real token into project files or commit it. The API matches audio turns to transcript segments and returns anonymous labels such as `SPEAKER_00`. Listen to the audio and manually verify which speaker is the doctor, patient, or nurse; the model cannot assign those roles reliably. If this optional setup fails, transcription still returns.
+The token only authorizes model downloads; inference runs locally. Do not paste a real token into project files or commit it. For Bengali, Malayalam, and Urdu, diarization is required before Indic-Transcribe-core is used. The API returns anonymous labels such as `SPEAKER_00`; listen to the audio and manually verify which speaker is the doctor, patient, or nurse. If diarization or Indic model access fails, Whisper `large-v3` handles the whole recording and the response explains the fallback.
 
 ## Optional bilingual SOAP report generation
 
@@ -67,13 +67,14 @@ The endpoint returns English and source-language SOAP drafts, exact-quote eviden
 - `audio`: an audio file (up to 100 MB by default)
 - `language`: `auto`, `Arabic`, `Bengali`, `Malayalam`, `Urdu`, or `English`
 
-The JSON response includes `transcript`, detected language code, timestamped text segments, and explicit review/diarization status. Temporary uploaded audio is deleted after the request. On MLX it uses `WHISPER_MODEL`; on CPU it uses the OpenAI checkpoint named by `OPENAI_WHISPER_MODEL` (default `large-v3-turbo`). Set `ASR_BACKEND=cpu` to force CPU mode, or leave it as `auto` to prefer MLX when Metal is available. CPU transcription is slower. Change the model names or `MAX_AUDIO_MB` in the environment before starting if needed.
+The JSON response includes `transcript`, detected language code, model name, timestamped text segments, and explicit review/diarization status. For explicitly selected Bengali, Malayalam, or Urdu, segments correspond to diarized speaker-turn intervals; timestamps are turn-level, not word-level. Temporary uploaded audio is deleted after the request. On MLX Whisper uses `WHISPER_MODEL` (default `mlx-community/whisper-large-v3-mlx`); on CPU it uses `OPENAI_WHISPER_MODEL` (default `large-v3`). Set `ASR_BACKEND=cpu` to force CPU mode, or leave it as `auto` to prefer MLX when Metal is available. The `/api/health` route reports the language-model routing.
 
 `POST /api/report` accepts JSON fields `language`, `verified_transcript`, `transcript_status`, `transcript_reviewer`, and `speaker_roles_verified`. The report route accepts Arabic, Bengali, Malayalam, or Urdu and requires `[DOCTOR]`, `[PATIENT]`, and `[NURSE]` labels in the reviewed transcript.
 
 ## Scope and limitations
 
-- Language selection guides Whisper; `auto` asks it to detect the language.
+- Language selection routes supported Indic languages to Indic-Transcribe-core only when diarization is available; `auto` uses Whisper `large-v3` for detection and transcription.
+- Indic-Transcribe-core is single-speaker and is run over diarized turns, which can lose some context at turn boundaries. Its transcript still needs review, especially for medical values, medicine names, and short interruptions.
 - Whisper returns transcript segments. Optional pyannote diarization can add anonymous speaker IDs, but it does not identify doctor/patient/nurse roles; a person must verify role labels by listening.
 - The `/api/report` endpoint generates bilingual SOAP drafts only after transcript and speaker-role verification. Its Qwen adapter is experimental and outputs still need fluent and clinical review.
 - Transcription quality must be measured against fluent-verified references. This backend does not claim clinical accuracy.

@@ -21,9 +21,10 @@ from starlette.concurrency import run_in_threadpool
 
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "outputs" / "dashboard"
-MODEL = os.getenv("WHISPER_MODEL", "mlx-community/whisper-large-v3-turbo")
-OPENAI_WHISPER_MODEL = os.getenv("OPENAI_WHISPER_MODEL", "large-v3-turbo")
-WHISPER_TRANSLATION_MODEL = os.getenv("WHISPER_TRANSLATION_MODEL", "small")
+MODEL = os.getenv("WHISPER_MODEL", "mlx-community/whisper-large-v3-mlx")
+OPENAI_WHISPER_MODEL = os.getenv("OPENAI_WHISPER_MODEL", "large-v3")
+WHISPER_TRANSLATION_MODEL = os.getenv("WHISPER_TRANSLATION_MODEL", "large-v3")
+INDIC_MODEL_ID = os.getenv("INDIC_MODEL_ID", "bodhan-ai/indic-transcribe-core")
 ASR_BACKEND = os.getenv("ASR_BACKEND", "auto").strip().lower()
 REPORT_BASE_MODEL = os.getenv("REPORT_BASE_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
 REPORT_ADAPTER = os.getenv("REPORT_ADAPTER", str(ROOT / "outputs" / "final_adapter.zip"))
@@ -56,6 +57,10 @@ app = FastAPI(
 _diarization_pipeline: Any = None
 _openai_whisper_model: Any = None
 _translation_whisper_model: Any = None
+_indic_transcriber: Any = None
+_indic_model_dir: str | None = None
+_indic_lock = threading.Lock()
+_indic_inference_lock = threading.Lock()
 _asr_engine: str | None = None
 _asr_model_id: str | None = None
 _report_model: Any = None
@@ -86,6 +91,10 @@ def health() -> dict[str, Any]:
         "audio_storage": "temporary; deleted after each request",
         "speaker_diarization": "configured" if HF_TOKEN else "needs_optional_huggingface_token",
         "diarization_model": DIARIZATION_MODEL,
+        "language_model_routing": {
+            "Arabic, English, or automatic detection": f"OpenAI Whisper {OPENAI_WHISPER_MODEL} (MLX: {MODEL})",
+            "Bengali, Malayalam, Urdu": f"{INDIC_MODEL_ID} on diarized speaker turns; Whisper fallback if diarization/model access is unavailable",
+        },
         "report_model": REPORT_BASE_MODEL,
         "report_generation": (
             "adapter_not_found" if not Path(REPORT_ADAPTER).exists()
@@ -138,12 +147,36 @@ def _transcribe(path: str, language_code: str | None) -> dict[str, Any]:
 
 
 def _translate_to_english(path: str, language_code: str | None) -> dict[str, Any]:
-    """Translate non-English speech to English with a multilingual Whisper checkpoint."""
+    """Translate non-English speech to English with the full Whisper checkpoint."""
     global _translation_whisper_model
+    import torch
+
+    if ASR_BACKEND != "cpu" and torch.backends.mps.is_available():
+        try:
+            import mlx_whisper
+
+            options: dict[str, Any] = {
+                "path_or_hf_repo": MODEL,
+                "task": "translate",
+                "word_timestamps": False,
+                "condition_on_previous_text": False,
+                "verbose": False,
+            }
+            if language_code:
+                options["language"] = language_code
+            return mlx_whisper.transcribe(path, **options)
+        except (ImportError, RuntimeError):
+            # Continue with the full OpenAI checkpoint on CPU.
+            pass
+
     import whisper
 
-    if _translation_whisper_model is None:
-        _translation_whisper_model = whisper.load_model(WHISPER_TRANSLATION_MODEL, device="cpu")
+    if OPENAI_WHISPER_MODEL == WHISPER_TRANSLATION_MODEL and _openai_whisper_model is not None:
+        model = _openai_whisper_model
+    else:
+        if _translation_whisper_model is None:
+            _translation_whisper_model = whisper.load_model(WHISPER_TRANSLATION_MODEL, device="cpu")
+        model = _translation_whisper_model
     options: dict[str, Any] = {
         "task": "translate",
         "fp16": False,
@@ -152,7 +185,7 @@ def _translate_to_english(path: str, language_code: str | None) -> dict[str, Any
     }
     if language_code:
         options["language"] = language_code
-    return _translation_whisper_model.transcribe(path, **options)
+    return model.transcribe(path, **options)
 
 
 def _diarize(path: str) -> list[dict[str, Any]]:
@@ -207,6 +240,77 @@ def _attach_speakers(segments: list[dict[str, Any]], turns: list[dict[str, Any]]
                     best_overlap, best_speaker = overlap, turn["speaker"]
         attached.append({**segment, "speaker": best_speaker})
     return attached
+
+
+def _transcribe_indic_turns(
+    path: str,
+    language_code: str,
+    turns: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Transcribe Indic audio one diarized speaker turn at a time.
+
+    Indic-Transcribe-core documents single-speaker input, so do not feed it the
+    complete multi-speaker consultation. If loading or a turn fails, the caller
+    falls back to Whisper for the complete audio.
+    """
+    global _indic_transcriber, _indic_model_dir, _asr_engine, _asr_model_id
+    import sys
+
+    from huggingface_hub import snapshot_download
+
+    with _indic_lock:
+        if _indic_transcriber is None:
+            _indic_model_dir = snapshot_download(INDIC_MODEL_ID, token=HF_TOKEN or None)
+            if _indic_model_dir not in sys.path:
+                sys.path.insert(0, _indic_model_dir)
+            from indic_transcribe import IndicTranscribe
+
+            _indic_transcriber = IndicTranscribe.from_pretrained(_indic_model_dir)
+        recognizer = _indic_transcriber
+
+    segments: list[dict[str, Any]] = []
+    with _indic_inference_lock, tempfile.TemporaryDirectory(prefix="healthcare-indic-turns-") as workdir:
+        for index, turn in enumerate(turns):
+            start = max(0.0, float(turn["start"]) - 0.08)
+            end = max(start, float(turn["end"]) + 0.08)
+            if end - start < 0.35:
+                continue
+            turn_path = str(Path(workdir) / f"turn-{index:04d}.wav")
+            subprocess.run(
+                [
+                    "ffmpeg", "-y", "-ss", f"{start:.3f}", "-i", path,
+                    "-t", f"{end - start:.3f}", "-vn", "-ac", "1", "-ar", "16000",
+                    "-c:a", "pcm_s16le", turn_path,
+                ],
+                check=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.PIPE,
+            )
+            if end - start > 45:
+                from long_form import transcribe_long
+
+                text = transcribe_long(recognizer, turn_path, lang=language_code)
+            else:
+                text = recognizer(turn_path, lang=language_code)
+            if isinstance(text, tuple):
+                text = text[0]
+            text = str(text).strip()
+            if text:
+                segments.append({
+                    "start": round(float(turn["start"]), 3),
+                    "end": round(float(turn["end"]), 3),
+                    "text": text,
+                    "speaker": str(turn["speaker"]),
+                })
+
+    if not segments:
+        raise ValueError("Indic-Transcribe-core returned no text for the diarized speaker turns.")
+    _asr_engine, _asr_model_id = "indic-transcribe-core", INDIC_MODEL_ID
+    return {
+        "text": "\n".join(f"[{segment['speaker']}] {segment['text']}" for segment in segments),
+        "language": language_code,
+        "segments": segments,
+    }
 
 
 def _resolve_adapter_path() -> Path:
@@ -351,11 +455,57 @@ async def transcribe(
                     raise HTTPException(status_code=413, detail=f"Audio exceeds the {MAX_AUDIO_BYTES // (1024 * 1024)} MB upload limit.")
                 temp.write(chunk)
 
-        result = await run_in_threadpool(
-            _transcribe,
-            temp_path,
-            LANGUAGE_CODES.get(language),
-        )
+        speaker_turns: list[dict[str, Any]] = []
+        diarization_status = "disabled_no_huggingface_token"
+        diarization_error = None
+        indic_fallback_reason = None
+        diarization_attempted = False
+        result: dict[str, Any] | None = None
+        indic_language = language in {"Bengali", "Malayalam", "Urdu"}
+
+        # Indic-Transcribe-core expects single-speaker input. Run diarization
+        # first for known Indic languages, then transcribe each anonymous turn.
+        if indic_language and HF_TOKEN:
+            diarization_attempted = True
+            try:
+                speaker_turns = await run_in_threadpool(_diarize, temp_path)
+                if speaker_turns:
+                    diarization_status = "available_review_roles"
+                    result = await run_in_threadpool(
+                        _transcribe_indic_turns,
+                        temp_path,
+                        LANGUAGE_CODES[language],
+                        speaker_turns,
+                    )
+                else:
+                    diarization_status = "failed"
+                    indic_fallback_reason = "No speaker turns were returned; used Whisper on the full recording."
+            except Exception as exc:
+                diarization_status = "available_review_roles" if speaker_turns else "failed"
+                if not speaker_turns:
+                    diarization_error = str(exc)[:240]
+                indic_fallback_reason = "Indic speaker-turn transcription was unavailable; used Whisper on the full recording."
+        elif indic_language:
+            indic_fallback_reason = "Hugging Face login is needed for diarized Indic transcription; used Whisper on the full recording."
+
+        if result is None:
+            result = await run_in_threadpool(
+                _transcribe,
+                temp_path,
+                LANGUAGE_CODES.get(language),
+            )
+            # Whisper handles the complete call. Add speaker labels afterward
+            # when pyannote is configured and the Indic route did not already
+            # produce its speaker turns.
+            if HF_TOKEN and not diarization_attempted:
+                diarization_attempted = True
+                try:
+                    speaker_turns = await run_in_threadpool(_diarize, temp_path)
+                    diarization_status = "available_review_roles" if speaker_turns else "failed"
+                except Exception as exc:
+                    diarization_status = "failed"
+                    diarization_error = str(exc)[:240]
+
         text = str(result.get("text", "")).strip()
         if not text:
             raise HTTPException(status_code=422, detail="No speech was recognized in this audio.")
@@ -370,6 +520,8 @@ async def transcribe(
             }
             for segment in result.get("segments", [])
         ]
+        if speaker_turns and segments and not all(segment.get("speaker") for segment in segments):
+            segments = _attach_speakers(segments, speaker_turns)
         english_transcript = ""
         english_segments: list[dict[str, Any]] = []
         translation_status = "failed"
@@ -399,19 +551,8 @@ async def transcribe(
                 # Keep the source-language transcript if optional translation fails.
                 translation_error = str(exc)[:240]
 
-        diarization_status = "disabled_no_huggingface_token"
-        diarization_error = None
-        speaker_turns: list[dict[str, Any]] = []
-        if HF_TOKEN:
-            try:
-                speaker_turns = await run_in_threadpool(_diarize, temp_path)
-                segments = _attach_speakers(segments, speaker_turns)
-                english_segments = _attach_speakers(english_segments, speaker_turns)
-                diarization_status = "available_review_roles"
-            except Exception as exc:
-                # Preserve the ASR result if optional diarization setup or inference fails.
-                diarization_status = "failed"
-                diarization_error = str(exc)[:240]
+        if speaker_turns and english_segments:
+            english_segments = _attach_speakers(english_segments, speaker_turns)
         return {
             "transcript": text,
             "detected_language": result.get("language", LANGUAGE_CODES.get(language, "unknown")),
@@ -426,6 +567,7 @@ async def transcribe(
             "speakers": sorted({turn["speaker"] for turn in speaker_turns}),
             "diarization_status": diarization_status,
             "diarization_error": diarization_error,
+            "asr_fallback_reason": indic_fallback_reason,
             "review_required": True,
             "notice": "Automatic speech recognition can mishear medical terms, names, numbers, and speaker changes. Review against the audio.",
         }
@@ -438,7 +580,7 @@ async def transcribe(
         if "ffmpeg" in message.lower():
             message = "ffmpeg is missing. Install it with: brew install ffmpeg"
         elif "connection" in message.lower() or "download" in message.lower():
-            message = f"Could not download/load model {MODEL}. Check internet access and try again."
+            message = f"Could not download/load ASR model {_asr_model_id or OPENAI_WHISPER_MODEL}. Check internet access and Hugging Face model access, then try again."
         raise HTTPException(status_code=500, detail=message[:500]) from exc
     finally:
         if temp_path:
