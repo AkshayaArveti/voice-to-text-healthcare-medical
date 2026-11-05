@@ -9,12 +9,13 @@ import subprocess
 import threading
 import tempfile
 import zipfile
+from io import BytesIO
 from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel, Field
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
 
@@ -78,6 +79,16 @@ class ReportRequest(BaseModel):
     transcript_status: str
     transcript_reviewer: str = Field(min_length=2, max_length=120)
     speaker_roles_verified: bool
+
+
+class ReportExportRequest(BaseModel):
+    language: str
+    transcript_status: str
+    transcript_reviewer: str = Field(min_length=2, max_length=120)
+    speaker_roles_verified: bool
+    report_reviewed: bool
+    verified_transcript: str = Field(min_length=1, max_length=30000)
+    report: dict[str, Any]
 
 
 @app.get("/api/health")
@@ -368,12 +379,15 @@ def _report_prompt(language: str, transcript: str) -> str:
     }
     return (
         "Format a human-verified consultation transcript as a draft SOAP summary. "
-        "Use only facts explicitly present in the transcript. Do not infer diagnoses, medicines, doses, "
-        "or advice. Attribute patient-reported facts to S, measurements and tests to O, clinician-stated "
+        "Use only facts explicitly present in the transcript. Do not use outside medical knowledge or infer "
+        "diagnoses, medicines, doses, causes, normal ranges, or advice. Preserve every reported number and unit "
+        "exactly; do not calculate, normalize, round, or correct values. Attribute patient-reported facts to S, "
+        "measurements and tests to O, clinician-stated "
         "assessment to A, and clinician-stated actions to P. If a section has no supported facts, write "
         "'Not stated' (or a faithful equivalent in the source language). If a fact is ambiguous, write "
         "'Unclear'; never guess. Both reports must contain the same facts. Keep each evidence value an exact "
-        "verbatim source-language quote, or empty when no fact is stated. Output valid JSON only, exactly this schema: "
+        "verbatim source-language quote, or empty when no fact is stated. Each populated SOAP field should be "
+        "supported by an exact source quote. Output valid JSON only, exactly this schema: "
         f"{json.dumps(schema, ensure_ascii=False)}\n"
         f"Verified source language: {language}\nVerified transcript:\n{transcript}"
     )
@@ -431,6 +445,134 @@ def _generate_report(language: str, transcript: str) -> dict[str, Any]:
         }
     except json.JSONDecodeError:
         return {"status": "invalid_json_review_required", "raw_output": raw, "input_tokens": input_tokens, "output_tokens": output_tokens}
+
+
+def _validate_report_export(request: ReportExportRequest) -> tuple[dict[str, Any], list[str]]:
+    if request.language not in REPORT_LANGUAGES:
+        raise HTTPException(status_code=422, detail="Report language must be Arabic, Bengali, Malayalam, or Urdu.")
+    if request.transcript_status.strip().lower() != "verified":
+        raise HTTPException(status_code=422, detail="Verify the transcript before exporting the report.")
+    if not request.speaker_roles_verified:
+        raise HTTPException(status_code=422, detail="Verify doctor, patient, and nurse labels before exporting the report.")
+    if not request.transcript_reviewer.strip():
+        raise HTTPException(status_code=422, detail="Enter the transcript reviewer's name before exporting.")
+    transcript = request.verified_transcript.strip()
+    missing_roles = [role for role in ("[DOCTOR]", "[PATIENT]", "[NURSE]") if role not in transcript.upper()]
+    if missing_roles:
+        raise HTTPException(status_code=422, detail=f"Verified role labels are missing: {', '.join(missing_roles)}.")
+
+    report = request.report
+    if report.get("status") != "draft_review_required":
+        raise HTTPException(status_code=422, detail="Only a schema-valid report draft can be exported.")
+    if report.get("language") != request.language:
+        raise HTTPException(status_code=422, detail="Report language does not match the selected conversation language.")
+    report_transcript = report.get("verified_transcript")
+    if not isinstance(report_transcript, str) or report_transcript.strip() != transcript:
+        raise HTTPException(status_code=409, detail="The transcript changed after report generation. Generate a fresh report before exporting.")
+
+    required_sections = ("english_soap", "source_language_soap", "source_evidence")
+    for section in required_sections:
+        values = report.get(section)
+        if not isinstance(values, dict) or set(values) != set(SOAP_FIELDS) or not all(isinstance(values[field], str) for field in SOAP_FIELDS):
+            raise HTTPException(status_code=422, detail=f"Report section {section} is incomplete or invalid.")
+    evidence_mismatches = [
+        field for field, quote in report["source_evidence"].items()
+        if quote and quote not in transcript
+    ]
+    return report, evidence_mismatches
+
+
+def _build_report_docx(request: ReportExportRequest, report: dict[str, Any], evidence_mismatches: list[str]) -> bytes:
+    from docx import Document
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.oxml import OxmlElement
+    from docx.oxml.ns import qn
+    from docx.shared import Inches, Pt, RGBColor
+    from datetime import datetime
+
+    rtl_language = request.language in {"Arabic", "Urdu"}
+    field_labels = {
+        "S": "S — Subjective",
+        "O": "O — Objective",
+        "A": "A — Assessment",
+        "P": "P — Plan",
+    }
+
+    def set_direction(paragraph: Any, rtl: bool) -> None:
+        if not rtl:
+            return
+        p_pr = paragraph._p.get_or_add_pPr()
+        bidi = OxmlElement("w:bidi")
+        bidi.set(qn("w:val"), "1")
+        p_pr.append(bidi)
+        paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        for run in paragraph.runs:
+            r_pr = run._r.get_or_add_rPr()
+            rtl_mark = OxmlElement("w:rtl")
+            rtl_mark.set(qn("w:val"), "1")
+            r_pr.append(rtl_mark)
+
+    document = Document()
+    section = document.sections[0]
+    section.top_margin = Inches(0.7)
+    section.bottom_margin = Inches(0.7)
+    section.left_margin = Inches(0.8)
+    section.right_margin = Inches(0.8)
+    normal = document.styles["Normal"]
+    normal.font.name = "Aptos"
+    normal.font.size = Pt(10)
+    normal.font.color.rgb = RGBColor(38, 42, 46)
+
+    title = document.add_heading("Bilingual Clinical Consultation Summary", 0)
+    title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    subtitle = document.add_paragraph("DRAFT FOR HUMAN REVIEW — NOT A VERIFIED MEDICAL RECORD")
+    subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    if subtitle.runs:
+        subtitle.runs[0].bold = True
+        subtitle.runs[0].font.color.rgb = RGBColor(153, 47, 47)
+
+    metadata = document.add_table(rows=0, cols=2)
+    metadata.style = "Light Shading Accent 1"
+    meta_rows = [
+        ("Conversation language", request.language),
+        ("Transcript reviewer", request.transcript_reviewer.strip()),
+        ("Report model", str(report.get("model", "Not recorded"))),
+        ("Generated", datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %Z")),
+        ("Review status", "Draft; verify every statement against the audio"),
+    ]
+    for label, value in meta_rows:
+        cells = metadata.add_row().cells
+        cells[0].text = label
+        cells[1].text = value
+
+    document.add_heading("English SOAP summary", level=1)
+    for field in SOAP_FIELDS:
+        document.add_heading(field_labels[field], level=2)
+        paragraph = document.add_paragraph(report["english_soap"][field] or "Not stated")
+        set_direction(paragraph, False)
+
+    document.add_page_break()
+    document.add_heading(f"{request.language} SOAP summary", level=1)
+    for field in SOAP_FIELDS:
+        document.add_heading(field_labels[field], level=2)
+        paragraph = document.add_paragraph(report["source_language_soap"][field] or "Not stated")
+        set_direction(paragraph, rtl_language)
+        quote = report["source_evidence"][field]
+        if quote:
+            label = "Source quote — review" if field in evidence_mismatches else "Source quote"
+            evidence_label = document.add_paragraph(label)
+            if evidence_label.runs:
+                evidence_label.runs[0].bold = True
+            evidence = document.add_paragraph(f"“{quote}”")
+            set_direction(evidence, rtl_language)
+
+    footer = section.footer.paragraphs[0]
+    footer.text = "Research prototype · Draft only · Review content, attribution, numbers, medicines, units, and translation before use."
+    footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    buffer = BytesIO()
+    document.save(buffer)
+    return buffer.getvalue()
 
 
 @app.post("/api/transcribe")
@@ -626,6 +768,30 @@ async def generate_report(request: ReportRequest) -> dict[str, Any]:
         "clinical_use": "draft_only_human_review_required",
         "review_notice": "Check every fact, attribution, number, medicine, translation, and evidence quote against the audio and verified transcript.",
     }
+
+
+@app.post("/api/report/docx")
+async def export_report_docx(request: ReportExportRequest) -> Response:
+    if not request.report_reviewed:
+        raise HTTPException(status_code=422, detail="Review the generated report before exporting it.")
+    report, evidence_mismatches = _validate_report_export(request)
+    try:
+        document_bytes = await run_in_threadpool(
+            _build_report_docx,
+            request,
+            report,
+            evidence_mismatches,
+        )
+    except ImportError as exc:
+        raise HTTPException(
+            status_code=503,
+            detail="Word export is unavailable. Install the optional report requirements from backend/README.md.",
+        ) from exc
+    return Response(
+        content=document_bytes,
+        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        headers={"Content-Disposition": 'attachment; filename="bilingual_clinical_report_draft.docx"'},
+    )
 
 
 if DASHBOARD.is_dir():

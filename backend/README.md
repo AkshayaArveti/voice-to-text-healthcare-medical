@@ -58,7 +58,9 @@ python -m pip install -r backend/requirements-report.txt
 
 Restart the server. In the dashboard, correct the transcript, replace anonymous speaker IDs with `[DOCTOR]`, `[PATIENT]`, and `[NURSE]`, enter the fluent reviewer's name, choose the conversation language, and affirm both review checkboxes. The endpoint rejects report requests unless the transcript is marked verified and all three role labels are present. It refuses to truncate an overlong input. The first run downloads the base model; allow several GB of free disk space and enough memory for a 1.5B model.
 
-The endpoint returns English and source-language SOAP drafts, exact-quote evidence fields, token counts, and an explicit `draft_review_required` status. It flags evidence quotes that do not exactly match the transcript. These checks do not prove that every generated claim is correct. The LoRA has not been validated for this task, so a fluent reviewer must check both versions against the audio before use. If generation fails or produces invalid JSON, it returns no completed report.
+The endpoint returns English and source-language SOAP drafts, exact-quote evidence fields, token counts, and an explicit `draft_review_required` status. It flags evidence quotes that do not exactly match the transcript. The dashboard requires a second review of the generated report before enabling exports. **Download Word (.docx)** creates a formatted bilingual draft with reviewer metadata and source quotes. **Print / Save PDF** opens a print-only page; choose **Save as PDF** in the browser. The PDF is created locally by the browser and needs no PDF service. Editing the transcript after report generation invalidates the draft and requires regeneration.
+
+These checks do not prove that every generated claim is correct. The LoRA has not been validated for this task, so a fluent reviewer must check both versions against the audio before use. If generation fails or produces invalid JSON, it returns no completed report. Exported files remain drafts and should be corrected and approved by a qualified reviewer before any real clinical use.
 
 ## API
 
@@ -69,7 +71,7 @@ The endpoint returns English and source-language SOAP drafts, exact-quote eviden
 
 The JSON response includes `transcript`, detected language code, model name, timestamped text segments, and explicit review/diarization status. For explicitly selected Bengali, Malayalam, or Urdu, segments correspond to diarized speaker-turn intervals; timestamps are turn-level, not word-level. Temporary uploaded audio is deleted after the request. On MLX Whisper uses `WHISPER_MODEL` (default `mlx-community/whisper-large-v3-mlx`); on CPU it uses `OPENAI_WHISPER_MODEL` (default `large-v3`). Set `ASR_BACKEND=cpu` to force CPU mode, or leave it as `auto` to prefer MLX when Metal is available. The `/api/health` route reports the language-model routing.
 
-`POST /api/report` accepts JSON fields `language`, `verified_transcript`, `transcript_status`, `transcript_reviewer`, and `speaker_roles_verified`. The report route accepts Arabic, Bengali, Malayalam, or Urdu and requires `[DOCTOR]`, `[PATIENT]`, and `[NURSE]` labels in the reviewed transcript.
+`POST /api/report` accepts JSON fields `language`, `verified_transcript`, `transcript_status`, `transcript_reviewer`, and `speaker_roles_verified`. The report route accepts Arabic, Bengali, Malayalam, or Urdu and requires `[DOCTOR]`, `[PATIENT]`, and `[NURSE]` labels in the reviewed transcript. `POST /api/report/docx` accepts the valid generated draft plus the verified transcript, reviewer, and review confirmations; it returns a Word `.docx` file. PDF export is a browser print view, so the user chooses **Save as PDF** in the print dialog.
 
 ## Scope and limitations
 
