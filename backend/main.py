@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "outputs" / "dashboard"
 MODEL = os.getenv("WHISPER_MODEL", "mlx-community/whisper-large-v3-turbo")
 OPENAI_WHISPER_MODEL = os.getenv("OPENAI_WHISPER_MODEL", "large-v3-turbo")
+WHISPER_TRANSLATION_MODEL = os.getenv("WHISPER_TRANSLATION_MODEL", "large-v3")
 ASR_BACKEND = os.getenv("ASR_BACKEND", "auto").strip().lower()
 REPORT_BASE_MODEL = os.getenv("REPORT_BASE_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
 REPORT_ADAPTER = os.getenv("REPORT_ADAPTER", str(ROOT / "outputs" / "final_adapter.zip"))
@@ -54,6 +55,7 @@ app = FastAPI(
 )
 _diarization_pipeline: Any = None
 _openai_whisper_model: Any = None
+_translation_whisper_model: Any = None
 _asr_engine: str | None = None
 _asr_model_id: str | None = None
 _report_model: Any = None
@@ -133,6 +135,24 @@ def _transcribe(path: str, language_code: str | None) -> dict[str, Any]:
     result = _openai_whisper_model.transcribe(path, **options)
     _asr_engine, _asr_model_id = "openai-whisper-cpu", OPENAI_WHISPER_MODEL
     return result
+
+
+def _translate_to_english(path: str, language_code: str | None) -> dict[str, Any]:
+    """Translate non-English speech to English with a multilingual Whisper checkpoint."""
+    global _translation_whisper_model
+    import whisper
+
+    if _translation_whisper_model is None:
+        _translation_whisper_model = whisper.load_model(WHISPER_TRANSLATION_MODEL, device="cpu")
+    options: dict[str, Any] = {
+        "task": "translate",
+        "fp16": False,
+        "condition_on_previous_text": False,
+        "verbose": False,
+    }
+    if language_code:
+        options["language"] = language_code
+    return _translation_whisper_model.transcribe(path, **options)
 
 
 def _diarize(path: str) -> list[dict[str, Any]]:
@@ -340,6 +360,8 @@ async def transcribe(
         if not text:
             raise HTTPException(status_code=422, detail="No speech was recognized in this audio.")
 
+        detected_language = result.get("language", LANGUAGE_CODES.get(language, "unknown"))
+
         segments = [
             {
                 "start": segment.get("start"),
@@ -348,6 +370,35 @@ async def transcribe(
             }
             for segment in result.get("segments", [])
         ]
+        english_transcript = ""
+        english_segments: list[dict[str, Any]] = []
+        translation_status = "failed"
+        translation_error = None
+        if detected_language == "en":
+            english_transcript = text
+            english_segments = [dict(segment) for segment in segments]
+            translation_status = "source_is_english"
+        else:
+            try:
+                translation_result = await run_in_threadpool(
+                    _translate_to_english,
+                    temp_path,
+                    detected_language,
+                )
+                english_transcript = str(translation_result.get("text", "")).strip()
+                english_segments = [
+                    {
+                        "start": segment.get("start"),
+                        "end": segment.get("end"),
+                        "text": str(segment.get("text", "")).strip(),
+                    }
+                    for segment in translation_result.get("segments", [])
+                ]
+                translation_status = "available" if english_transcript else "failed"
+            except Exception as exc:
+                # Keep the source-language transcript if optional translation fails.
+                translation_error = str(exc)[:240]
+
         diarization_status = "disabled_no_huggingface_token"
         diarization_error = None
         speaker_turns: list[dict[str, Any]] = []
@@ -355,6 +406,7 @@ async def transcribe(
             try:
                 speaker_turns = await run_in_threadpool(_diarize, temp_path)
                 segments = _attach_speakers(segments, speaker_turns)
+                english_segments = _attach_speakers(english_segments, speaker_turns)
                 diarization_status = "available_review_roles"
             except Exception as exc:
                 # Preserve the ASR result if optional diarization setup or inference fails.
@@ -365,6 +417,11 @@ async def transcribe(
             "detected_language": result.get("language", LANGUAGE_CODES.get(language, "unknown")),
             "model": _asr_model_id or MODEL,
             "segments": segments,
+            "english_transcript": english_transcript,
+            "english_segments": english_segments,
+            "translation_model": WHISPER_TRANSLATION_MODEL if detected_language != "en" else None,
+            "translation_status": translation_status,
+            "translation_error": translation_error,
             "speaker_turns": speaker_turns,
             "speakers": sorted({turn["speaker"] for turn in speaker_turns}),
             "diarization_status": diarization_status,
