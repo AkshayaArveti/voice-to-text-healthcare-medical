@@ -82,7 +82,7 @@
       const $=id=>document.getElementById(id);
       const fileInput=$('audio-file'),drop=$('dropzone'),card=$('file-card'),player=$('audio-player'),textarea=$('transcript'),status=$('status');
       const savedBackend=localStorage.getItem('healthcareSttBackend');
-      const sameOriginBackend=(location.port==='8000'&&['127.0.0.1','localhost'].includes(location.hostname))?location.origin:'';
+      const sameOriginBackend=(['127.0.0.1','localhost'].includes(location.hostname))?location.origin:'';
       let selectedFile=null,objectUrl=null,backend=savedBackend||sameOriginBackend,lastReport=null;
       $('backend-url').value=backend;
       const setStatus=(message,kind='')=>{status.textContent=message;status.className='statusline'+(kind?' '+kind:'')};

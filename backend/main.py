@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 import json
 import importlib.util
+import subprocess
 import threading
 import tempfile
 import zipfile
@@ -146,14 +147,31 @@ def _diarize(path: str) -> list[dict[str, Any]]:
         _diarization_pipeline = Pipeline.from_pretrained(DIARIZATION_MODEL, token=HF_TOKEN)
         device = "mps" if torch.backends.mps.is_available() else "cpu"
         _diarization_pipeline.to(torch.device(device))
-    output = _diarization_pipeline(path)
-    annotation = getattr(output, "exclusive_speaker_diarization", None)
-    if annotation is None:
-        annotation = output.speaker_diarization
-    return [
-        {"start": round(turn.start, 3), "end": round(turn.end, 3), "speaker": str(speaker)}
-        for turn, _, speaker in annotation.itertracks(yield_label=True)
-    ]
+    wav_path = None
+    try:
+        with tempfile.NamedTemporaryFile(prefix="healthcare-diarization-", suffix=".wav", delete=False) as wav_file:
+            wav_path = wav_file.name
+        # Re-encode compressed uploads: some MP3 decoders return a slightly
+        # different sample count than pyannote expects from container metadata.
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", path, "-ac", "1", "-ar", "44100", "-c:a", "pcm_s16le", wav_path],
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+        )
+        # This project’s consultation script has three voices (doctor, patient,
+        # nurse). Pyannote IDs remain anonymous; people must review role labels.
+        output = _diarization_pipeline(wav_path, num_speakers=3)
+        annotation = getattr(output, "exclusive_speaker_diarization", None)
+        if annotation is None:
+            annotation = output.speaker_diarization
+        return [
+            {"start": round(turn.start, 3), "end": round(turn.end, 3), "speaker": str(speaker)}
+            for turn, _, speaker in annotation.itertracks(yield_label=True)
+        ]
+    finally:
+        if wav_path:
+            Path(wav_path).unlink(missing_ok=True)
 
 
 def _attach_speakers(segments: list[dict[str, Any]], turns: list[dict[str, Any]]) -> list[dict[str, Any]]:
